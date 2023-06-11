@@ -11,7 +11,8 @@ const routes: Routes = [
   /*   {path:'',component:RegistrationComponent}, */
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
-    {path:'Shop',component:ShopComponent},
+    
+    {path:'LazyLoading',loadChildren:()=>import('./lazy-loading/lazy-loading.module').then(m=>m.LazyLoadingModule)},
     {path:'**' , component:PageNotFoundComponent}
 /*     {path:'category',component:CategoryComponent},
     {path:'single-product',component:SingleProductComponent},
