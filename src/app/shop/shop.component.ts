@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { ProductsService } from '../services/products.service';
 import { HttpClient } from '@angular/common/http';
 @Component({
@@ -13,7 +13,9 @@ export class ShopComponent implements OnInit  {
   errorMessage:any;
   uniqueItems:any;
   categories:any=[]
-  constructor(private ProductsService:ProductsService, private router:Router , private http: HttpClient){ }
+  toggle:boolean=true;
+
+  constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){ }
 
  
  
@@ -23,8 +25,6 @@ export class ShopComponent implements OnInit  {
       next:(data:any)=>{
         this.product=data
         /* console.log(this.product) */
-        this.uniqueItems =[...new Set(this.product.products)]
-        console.log(this.uniqueItems)
       },
       error:error=>this.errorMessage=error
     })
@@ -36,16 +36,26 @@ export class ShopComponent implements OnInit  {
       this.categories = categorie;
     });
 
-
+    
   }
 
-  goToproductID(id:any){
-    this.router.navigate(["/LazyLoading/Shop",id])
-}
+ 
+      goCategorie(categorie:any){
+        this.router.navigate(["categorie/",categorie],{relativeTo:this.activatedRoute})
+        this.toggle=false;
+      }
 
-/*   goTocomponents(id:any){
-           this.router.navigate(["/PostsComponent",id])
-      } */
-              
+
+      
+
+      goToproductID(id:any){
+        this.router.navigate(["/LazyLoading/Shop",id])
+      }
+      getAllCategories(){
+        this.router.navigate(["/LazyLoading/Shop"])
+        this.toggle=true;
+      }
+
+    
       
 }

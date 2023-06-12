@@ -2,9 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShopComponent } from '../shop/shop.component';
 import { SingleProductComponent } from '../single-product/single-product.component';
+import { CategoriesComponent } from '../categories/categories.component';
 
 const routes: Routes = [
-  {path:'Shop',component:ShopComponent},
+  {path:'Shop',component:ShopComponent ,
+  children:[
+    {path:'categorie/:categorie',component:CategoriesComponent}
+  ]},
+
   {path:'Shop/:id',component:SingleProductComponent},
 ];
 

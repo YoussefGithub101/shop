@@ -1,1 +1,32 @@
-<p>categories works!</p>
+<div class="row product-lists">
+    
+    <div class="col-lg-4 col-md-6 text-center"  *ngFor="let prod of categoriesName.products;"  >
+        <div class="single-product-item" >
+            <div class="product-image" (click)="goToproductID(prod.id)">
+                <a ><img src={{prod.thumbnail}} alt="" ></a>
+            </div>
+            <h3>{{prod.title}}</h3>
+            <p class="product-price"><span>{{prod.brand}}</span> {{prod.price}}$ </p>
+            <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+        </div>
+    </div>
+
+    
+
+
+</div>
+
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <div class="pagination-wrap">
+                <ul>
+                    <li><a href="#">Prev</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a class="active" href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
