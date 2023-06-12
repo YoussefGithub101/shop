@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
-import {MatPaginatorModule} from '@angular/material/paginator';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',

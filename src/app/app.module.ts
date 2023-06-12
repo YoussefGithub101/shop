@@ -13,7 +13,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {HttpClientModule} from '@angular/common/http';
 import { SingleProductComponent } from './lazy-loading/single-product/single-product.component';
 import { CategoriesComponent } from './lazy-loading/categories/categories.component';
-import {MatPaginatorModule} from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
