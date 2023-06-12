@@ -8,10 +8,13 @@ import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { ShopComponent } from './shop/shop.component';
+import { ShopComponent } from './lazy-loading/shop/shop.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { AboutComponent } from './about/about.component';
-import { HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
+import { SingleProductComponent } from './lazy-loading/single-product/single-product.component';
+import { CategoriesComponent } from './lazy-loading/categories/categories.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,12 +25,14 @@ import { HttpClientModule} from '@angular/common/http'
     RegisterComponent,
     ShopComponent,
     PageNotFoundComponent,
-    AboutComponent
+    SingleProductComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
