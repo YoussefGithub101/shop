@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import {HttpClientModule} from '@angular/common/http';
 import { SingleProductComponent } from './lazy-loading/single-product/single-product.component';
 import { CategoriesComponent } from './lazy-loading/categories/categories.component';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CategoriesComponent } from './lazy-loading/categories/categories.compon
     ShopComponent,
     PageNotFoundComponent,
     SingleProductComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
