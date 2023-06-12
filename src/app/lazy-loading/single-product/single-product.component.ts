@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../services/products.service';
+ 
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-single-product',

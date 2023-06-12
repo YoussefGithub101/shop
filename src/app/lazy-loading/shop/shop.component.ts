@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
+import {MatPaginatorModule} from '@angular/material/paginator';
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -19,15 +20,18 @@ export class ShopComponent implements OnInit  {
 
  
  
-
   ngOnInit(): void{
+     
+    console.log("sadsadasd")
     this.ProductsService.getAllproducts().subscribe({
       next:(data:any)=>{
         this.product=data
-        /* console.log(this.product) */
+         
       },
       error:error=>this.errorMessage=error
     })
+    
+    
 
 
     // get all categories
@@ -35,8 +39,14 @@ export class ShopComponent implements OnInit  {
     .subscribe(categorie => {
       this.categories = categorie;
     });
-
     
+
+/*     if (this.router.url=="/LazyLoading/Shop"){
+      this.toggle=true;
+      console.log("dasds")
+    }
+    console.log(this.toggle)
+    console.log(this.router.url) */
   }
 
  
@@ -56,6 +66,6 @@ export class ShopComponent implements OnInit  {
         this.toggle=true;
       }
 
-    
+      
       
 }

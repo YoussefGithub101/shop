@@ -9,7 +9,6 @@ export class ProductsService {
 
   product={};
   _url='https://dummyjson.com/products';
- 
 
   constructor(private http:HttpClient) { }
 
@@ -22,6 +21,4 @@ export class ProductsService {
    }));
   }
 
-
- 
 }

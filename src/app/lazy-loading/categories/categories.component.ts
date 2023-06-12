@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router} from '@angular/router';
-import { ProductsService } from '../services/products.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-categories',
@@ -31,10 +31,12 @@ ngOnInit(): void{
   this.activatedRoute.paramMap.subscribe((params:ParamMap)=>{
     this.categorieid=params.get("categorie")
     console.log("id"+this.categorieid) 
+
+
     this.http.get<any[]>(`https://dummyjson.com/products/category/${this.categorieid}`)
     .subscribe(categorieData => {
       this.categoriesName = categorieData;
-      console.log(this.categoriesName )
+       
 });
 })
 
