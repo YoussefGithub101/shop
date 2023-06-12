@@ -21,3 +21,13 @@ export interface Iproduct
     thumbnail:string
     images:[]
 }
+
+export interface IsectionAbout
+{
+    about:[
+        {advantg:string,text:string,fav:string},
+        {advantg:string,text:string,fav:string},
+        {advantg:string,text:string,fav:string},
+        {advantg:string,text:string,fav:string},
+      ]
+}
