@@ -40,16 +40,8 @@ ngOnInit(): void{
 });
 })
 
-  /*  */
-
-
-
-
 }
-        myFunction(){
-            
-
-        }
+ 
 goToproductID(id:any){
   this.router.navigate(["/LazyLoading/Shop",id])
 }

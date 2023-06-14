@@ -81,8 +81,8 @@
                 <div class="search-bar">
                     <div class="search-bar-tablecell">
                         <h3>Search For:</h3>
-                        <input type="text" placeholder="Keywords">
-                        <button type="submit">Search <i class="fas fa-search"></i></button>
+                        <input type="text" placeholder="Keywords" #search id="search" >
+                        <button type="submit" (click)="goCategorie(search.value)">Search <i class="fas fa-search"></i></button>
                     </div>
                 </div>
             </div>

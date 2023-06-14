@@ -9,49 +9,52 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ShopComponent implements OnInit  {
 
+  title='pagination'
+ 
+  page:number=1;
+  count:number=0;
+  tableSize:number=6;
+  tableSizes:any=[5,10,15,20];
+
+
+
+
+
+
   product:any={};
   errorMessage:any;
   uniqueItems:any;
   categories:any=[]
-  toggle:boolean=true;
+  
 
-  constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){ }
+  constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, public  router:Router , private http: HttpClient){ }
 
- 
  
   ngOnInit(): void{
-     
-    console.log("sadsadasd")
-    this.ProductsService.getAllproducts().subscribe({
-      next:(data:any)=>{
-        this.product=data
-         
-      },
-      error:error=>this.errorMessage=error
-    })
-    
-    
-
-
+    this.getAllproduct()
+ 
     // get all categories
     this.http.get<any[]>(`https://dummyjson.com/products/categories`)
     .subscribe(categorie => {
       this.categories = categorie;
     });
     
-
-/*     if (this.router.url=="/LazyLoading/Shop"){
-      this.toggle=true;
-      console.log("dasds")
-    }
-    console.log(this.toggle)
-    console.log(this.router.url) */
   }
 
+
+      getAllproduct(): void{
+        this.ProductsService.getAllproducts().subscribe({
+          next:(data:any)=>{
+            this.product=data
+             
+          },error:error=>this.errorMessage=error
+        })
+
+      }
  
       goCategorie(categorie:any){
         this.router.navigate(["categorie/",categorie],{relativeTo:this.activatedRoute})
-        this.toggle=false;
+         
       }
 
 
@@ -62,9 +65,17 @@ export class ShopComponent implements OnInit  {
       }
       getAllCategories(){
         this.router.navigate(["/LazyLoading/Shop"])
-        this.toggle=true;
+         
       }
 
-      
+        onTableDataChange(event:any){
+          this.page=event;
+          this.getAllproduct();
+        }
+        onTableSizeChange(event:any){
+          this.tableSize=event.target.value
+          this.page=1;
+          this.getAllproduct();
+        }
       
 }
