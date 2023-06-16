@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
@@ -17,27 +17,27 @@ export class ShopComponent implements OnInit  {
   tableSizes:any=[5,10,15,20];
 
 
+  toggle:boolean=false;  
 
 
 
-
-  product:any={};
+  product:any=[];
   errorMessage:any;
   uniqueItems:any;
   categories:any=[]
   
 
-  constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, public  router:Router , private http: HttpClient){ }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2,private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, public  router:Router , private http: HttpClient){ }
 
  
   ngOnInit(): void{
+ 
+
+
+
     this.getAllproduct()
  
-    // get all categories
-    this.http.get<any[]>(`https://dummyjson.com/products/categories`)
-    .subscribe(categorie => {
-      this.categories = categorie;
-    });
+
     
   }
 
@@ -47,6 +47,9 @@ export class ShopComponent implements OnInit  {
           next:(data:any)=>{
             this.product=data
              
+            this.categories= Array.from(new Set(this.product.map((product: any) => product.category)));
+           
+
           },error:error=>this.errorMessage=error
         })
 
@@ -72,10 +75,20 @@ export class ShopComponent implements OnInit  {
           this.page=event;
           this.getAllproduct();
         }
-        onTableSizeChange(event:any){
-          this.tableSize=event.target.value
-          this.page=1;
-          this.getAllproduct();
+ 
+
+
+
+
+        toggleSidebar() {
+          this.toggle=!this.toggle;
+          const sidebar = this.elementRef.nativeElement.querySelector('#sidebar');
+          if (this.toggle){
+            this.renderer.addClass(sidebar, 'active');
+          }
+          else {this.renderer.removeClass(sidebar, 'active');}
+          console.log('Work');
         }
+      
       
 }

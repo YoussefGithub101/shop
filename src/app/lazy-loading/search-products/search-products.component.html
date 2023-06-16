@@ -1,11 +1,13 @@
-<div *ngIf="(Searchdata.products.length===0);then noData; else diplayData">
+
+
+<div *ngIf="(Searchdata.length===0);then noData; else diplayData">
     
 </div>
 <ng-template #diplayData>
  
 
     <div class="row product-lists">
-        <div class="col-lg-4 col-md-6 text-center"  *ngFor="let prod of Searchdata.products | paginate :{
+        <div class="col-lg-4 col-md-6 text-center"  *ngFor="let prod of Searchdata | paginate :{
             itemsPerPage:tableSize,
             currentPage:page,
             totalItems:count}; let i=index">

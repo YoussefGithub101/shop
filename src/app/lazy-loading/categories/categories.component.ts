@@ -2,51 +2,62 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router} from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
+import {Iproducts} from "src/app/interfaces/products"
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit{
+  page:number=1;
+  count:number=0;
+  tableSize:number=6;
+  tableSizes:any=[5,10,15,20];
 
-
-  product:any={};
+  product:any=[];
   errorMessage:any;
  
-  categoriesName:any=[]
+  categoriesName:any= [];
   categorieid:any;
 constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){}
 
 
 
 ngOnInit(): void{
+
+  this.activatedRoute.paramMap.subscribe((params:ParamMap)=>{
+    this.categorieid=params.get("categorie")
+    console.log(this.categorieid)
+
   this.ProductsService.getAllproducts().subscribe({
     next:(data:any)=>{
-      this.product=data
-      /* console.log(this.product) */
+      this.product=data;
+      this.getproductCate()
     },
     error:error=>this.errorMessage=error
   })
 
-  this.activatedRoute.paramMap.subscribe((params:ParamMap)=>{
-    this.categorieid=params.get("categorie")
-    console.log("id"+this.categorieid) 
-
-
-    this.http.get<any[]>(`https://dummyjson.com/products/category/${this.categorieid}`)
-    .subscribe(categorieData => {
-      this.categoriesName = categorieData;
-       
-});
+ 
 })
 
 }
  
+ 
+
 goToproductID(id:any){
   this.router.navigate(["/LazyLoading/Shop",id])
 }
+getproductCate(){
 
+  this.categoriesName = this.product.filter((producta:any) =>producta.category == this.categorieid);
+  console.log(this.categoriesName)
+  
+}
 
+onTableDataChange(event:any){
+  this.page=event;
+  this.getproductCate();
+}
  
 
 

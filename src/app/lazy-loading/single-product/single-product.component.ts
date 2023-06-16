@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
- 
+import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-single-product',
@@ -11,19 +11,24 @@ export class SingleProductComponent  implements OnInit{
    
   SingleProductdata:any=[];
   SingleProductID:any;
+  errorMessage: any;
  
-  constructor(private activated:ActivatedRoute, private http: HttpClient){}
+  constructor(private activated:ActivatedRoute, private http: HttpClient,private ProductsService:ProductsService){}
 
   ngOnInit(): void {
       this.SingleProductID=this.activated.snapshot.paramMap.get('id')
       console.log(this.SingleProductID)
-      this.loadComments();
+       this.getproductSID()
    }
-   loadComments() {
-    this.http.get<any[]>(`https://dummyjson.com/products/${this.SingleProductID}`)
-      .subscribe(SingleProduct => {
-        this.SingleProductdata = SingleProduct;
-      });
+ 
+   getproductSID(): void{
+    this.ProductsService.getproductID(this.SingleProductID).subscribe({
+      next:(data:any)=>{
+        this.SingleProductdata=data
+         
+      },error:error=>this.errorMessage=error
+    })
+
   }
   }
 

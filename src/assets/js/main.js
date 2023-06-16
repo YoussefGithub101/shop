@@ -164,5 +164,14 @@
         jQuery(".loader").fadeOut(1000);
     });
 
-
+        
 }(jQuery));
+
+$(document).ready(function () {
+
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+        console.log("work")
+    });
+
+});

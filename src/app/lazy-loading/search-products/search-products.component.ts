@@ -18,6 +18,7 @@ export class SearchProductsComponent implements OnInit{
 
   SearchID:any;
   Searchdata:any=[]
+  errorMessage: any;
   constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){}
 
 
@@ -25,17 +26,20 @@ export class SearchProductsComponent implements OnInit{
   ngOnInit(): void {
    this.activatedRoute.paramMap.subscribe((params:ParamMap)=>{
     this.SearchID=params.get("searchProduct")
-    console.log("id"+this.SearchID) 
+    console.log(this.SearchID) 
+    this.getproduct()
    })
 
-   this.getproduct()
+  
 }
 getproduct(){
-  this.http.get<any[]>(`https://dummyjson.com/products/search?q=${this.SearchID}`)
-  .subscribe(data => {
-    this.Searchdata = data;
-     
-});
+  this.ProductsService.getproductSearch(this.SearchID).subscribe({
+    next:(data:any)=>{
+      this.Searchdata=data
+       console.log(this.Searchdata)
+       
+    },error:error=>this.errorMessage=error
+  })
 }
 
 
@@ -48,10 +52,6 @@ onTableDataChange(event:any){
   this.page=event;
   this.getproduct();
 }
-onTableSizeChange(event:any){
-  this.tableSize=event.target.value
-  this.page=1;
-  this.getproduct();
-}
+ 
 
 }

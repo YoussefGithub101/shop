@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="row ">   <!-- d-flex align-items-stretch-->
-            <div class="col-lg-4 col-md-6 text-center" *ngFor="let pr of sectionProudcts.products let i=index" >
+            <div class="col-lg-4 col-md-6 text-center" *ngFor="let pr of sectionProudcts let i=index" >
                 <div class="single-product-item" *ngIf="i<3">
                     <div class="product-image">
                         <a routerLink="/single-product"><img [src]="pr.images[0]" [alt]="pr.description" style="height: 250px;"></a>
@@ -132,7 +132,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6" *ngFor="let pro of sectionProudcts.products let i =index">
+            <div class="col-lg-4 col-md-6" *ngFor="let pro of sectionProudcts let i =index">
                 <div class="single-latest-news" *ngIf="i<3">
                     <a routerLink="single-product"><div class="latest-news-bg news-bg-1"></div></a>
                     <div class="news-text-box">
