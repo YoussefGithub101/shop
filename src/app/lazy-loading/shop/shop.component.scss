@@ -134,6 +134,7 @@ p:last-child {
 }
 
 .product-image img {
+  object-fit: cover;
   transition: 0.3s;
 }
 .product-image img:hover {

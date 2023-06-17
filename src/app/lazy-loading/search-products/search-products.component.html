@@ -16,7 +16,11 @@
                     <a ><img src={{prod.thumbnail}} alt="" ></a>
                 </div>
                 <h3>{{prod.title}}</h3>
-                <p class="product-price"><span>{{prod.brand}}</span> {{prod.price}}$ </p>
+                <span>{{prod.brand}}</span>
+                <div class="d-flex  justify-content-around flex-wrap">
+                <p class="product-price" style="color: black;"> {{prod.price-(prod.price *(prod.discountPercentage/100)) | currency}}  </p>
+                <p class="product-price">  <del style="color: #F28123;">${{prod.price}}</del>  </p>
+                </div>
                 <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
             </div>
         </div>
@@ -40,9 +44,11 @@
 
 </ng-template>
 <ng-template #noData>
+    <div class="text-center">
     <h2>
-        no data
+        No product found for your query.
     </h2>
+</div>
 </ng-template>
 
 
