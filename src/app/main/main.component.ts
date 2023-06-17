@@ -10,7 +10,7 @@ export class MainComponent {
   constructor(private proudctService:ProductsService){}
   sale:number=50;
   priceOffer:number=.3;
-  bgImg:string="assets/img/a.jpg";
+  bgImg:string="assets/img/img/8.jpg";
   titleOfDailyOffer:string="Hikan Strwaberry";
   textOfDailyOffer:string="Quisquam minus maiores repudiandae nobis, minima saepe id, fugit ullam similique! Beatae, minima quisquam molestias facere ea. Perspiciatis unde omnis iste natus error sit voluptatem accusant";
   titleOfMonthlyOffer:string="December sale is on!";
@@ -37,5 +37,5 @@ ngOnInit():void
       }
     )
   }
-                    
+
 }
