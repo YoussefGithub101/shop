@@ -16,6 +16,8 @@ import { CategoriesComponent } from './lazy-loading/categories/categories.compon
 import { AboutComponent } from './about/about.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LogoutComponent } from './logout/logout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,6 +31,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     SingleProductComponent,
     CategoriesComponent,
     AboutComponent,
+    LogoutComponent,
     
   ],
   imports: [
@@ -36,7 +39,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -51,8 +51,9 @@
                                 </ul>
                             </li>
                            <!--  <li><a href="contact.html">Contact</a></li> -->
-                            <li><a routerLink="/login">Login</a></li>
-                            <li><a routerLink="/register">register</a></li>
+                           <li *ngIf="!islogin"><a routerLink="/login">Login</a></li>
+                           <li *ngIf="!islogin"><a routerLink="/register">register</a></li>
+                           <li  *ngIf="islogin" (click)="logOut()"><a routerLink="/logout">logOut</a></li>
 
                             <li>
                                 <div class="header-icons">

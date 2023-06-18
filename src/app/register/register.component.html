@@ -12,10 +12,10 @@
     </div>
 </div>
 <br><br>
-<section class="login_box_area section_gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
+<section class="login_box_area section_gap ">
+    <div class="container ">
+        <div class="row ">
+            <!-- <div class="col-lg-6">
                 <div class="login_box_img">
                     <img class="img-fluid" src="./assets/img/login.jpg" alt="">
                     <div class="hover">
@@ -24,25 +24,54 @@
                         <a class="primary-btn" href="registration.html">Create an Account</a>
                     </div>
                 </div>
+            </div> -->
+           <!-- <div class="col-lg-6">
+            <div class="site-logo">
+                <a href="index.html">
+                    <img src="assets/img/logo.png" alt="">
+                </a>
             </div>
-            <div class="col-lg-6">
+           </div> -->
+               
+            <div class="col-lg-8 pu mx-auto ">
+                   
                 <div class="login_form_inner">
                     <h3>register in to enter</h3>
-                    <form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                    <form class="row login_form " [formGroup]="form" (ngSubmit)='dub(form)'  >     
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+                            <input  type="text" formControlName="firstName" class="form-control" name="firstName"  placeholder="firstName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'firstName'">
+                            <div  class=" pt-3" *ngIf='form.get("firstName")?.errors !=null && form.get("firstName")?.touched' role="alert">
+                                <p class="bkm alert ">firstName is required</p>
+                              </div>
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                            <input  type="text" formControlName="lastName" class="form-control" name="lastName"  placeholder="lastName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'lastName'">
+                            <div  class=" pt-3" *ngIf='form.get("lastName")?.errors !=null && form.get("lastName")?.touched' role="alert">
+                                <p class="bb alert ">lastName is required</p>
+                              </div>
                         </div>
                         <div class="col-md-12 form-group">
-                            <div class="creat_account">
-                                <input type="checkbox" id="f-option2" name="selector">
-                                <label for="f-option2">Keep me logged in</label>
-                            </div>
+                            <input type="email" formControlName="email" class="form-control"  name="email"  placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'email'">
+                            <div  class=" pt-3" *ngIf='form.get("email")?.errors !=null && form.get("email")?.touched'   role="alert">
+                                <p class="bb alert " *ngIf='form.get("email")?.errors?.["required"]' >email is required</p>
+                                <p  class="bb alert " *ngIf='form.get("email")?.errors?.["email"]'>email is invalid</p>
+                           
+                              </div>
                         </div>
+                        <div *ngIf='error' class="bk alert ">
+                            {{error}}
+                           </div>  
                         <div class="col-md-12 form-group">
-                            <button type="submit" value="submit" class="primary-btn">register</button>
+                            <input  type="password" formControlName="password" class="form-control"  name="password"  placeholder="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password'">
+                            <div class=" pt-3" *ngIf='form.get("password")?.errors !=null && form.get("password")?.touched' role="alert">
+                                <p class="bb alert " *ngIf='form.get("password")?.errors?.["required"]'  >password is required</p>
+                                <p class="bb alert " *ngIf='form.get("password")?.errors?.["minlength"]' >password is invalid</p>
+                                
+                              </div>
+                        </div>
+                       
+                        <div class="col-md-12 form-group mb-5">
+                            <button [disabled]="form.invalid" type="submit"  class="primary-btn mt-5 ">Register</button>
                              
                         </div>
                     </form>

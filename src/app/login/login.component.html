@@ -12,10 +12,13 @@
     </div>
 </div>
 <br><br>
-<section class="login_box_area section_gap">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
+ 
+
+<!--================Login Box Area =================-->
+<section class="login_box_area section_gap ">
+    <div class="container ">
+        <div class="row ">
+            <!-- <div class="col-lg-6">
                 <div class="login_box_img">
                     <img class="img-fluid" src="./assets/img/login.jpg" alt="">
                     <div class="hover">
@@ -24,26 +27,53 @@
                         <a class="primary-btn" href="registration.html">Create an Account</a>
                     </div>
                 </div>
+            </div> -->
+           <!-- <div class="col-lg-6">
+            <div class="site-logo">
+                <a href="index.html">
+                    <img src="assets/img/logo.png" alt="">
+                </a>
             </div>
-            <div class="col-lg-6">
+           </div> -->
+               
+            <div class="col-lg-8 pu mx-auto ">
+                   
+                 
                 <div class="login_form_inner">
-                    <h3>Log in to enter</h3>
-                    <form class="row login_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                 
+                    <h3>login</h3>
+                    <form class="row login_form " [formGroup]="forms" (ngSubmit)='login(forms)' >
+                              
+                       
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+                            <input type="email" formControlName="email" class="form-control"  name="email"  placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'email'">
+                            <div class=" pt-3" *ngIf='forms.get("email")?.errors !=null && forms.get("email")?.touched'   role="alert">
+                                <p class="bb alert  " *ngIf='forms.get("email")?.errors?.["required"]' >email is required</p>
+                                <p class="bb alert " *ngIf='forms.get("email")?.errors?.["email"]'>email is invalid</p>
+                              </div>
                         </div>
+                        <div *ngIf='error' class="bk alert ">
+                            {{error}}
+                        </div> 
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                            <input  type="password" formControlName="password" class="form-control"  name="password"  placeholder="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password'">
+                            <div  class=" pt-3" *ngIf='forms.get("password")?.errors !=null && forms.get("password")?.touched' role="alert">
+                                <p class="bb alert  " *ngIf='forms.get("password")?.errors?.["required"]'  >password is required</p>
+                                <p class="bb alert " *ngIf='forms.get("password")?.errors?.["minlength"]' >password is invalid</p>
+                              </div>
                         </div>
-                        <div class="col-md-12 form-group">
+                        <div *ngIf='errors' class="bk alert ">
+                            {{errors}}
+                           </div> 
+                        <!-- <div class="col-md-12 form-group">
                             <div class="creat_account">
                                 <input type="checkbox" id="f-option2" name="selector">
-                                <label for="f-option2">Keep me logged in</label>
+                                
                             </div>
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <button type="submit" value="submit" class="primary-btn">Log In</button>
-                            <a href="#">Forgot Password?</a>
+                        </div> -->
+                        <div class="col-md-12 form-group mt-5 mb-5">
+                            <button [disabled]="forms.invalid" type="submit"  class="primary-btn ">Login</button>
+                             
                         </div>
                     </form>
                 </div>

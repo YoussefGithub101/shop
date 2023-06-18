@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 /* import { ShopComponent } from './shop/shop.component'; */
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AboutComponent } from './about/about.component';
+import { LogoutComponent } from './logout/logout.component';
 
 const routes: Routes = [
   {path:'',component:MainComponent},
@@ -13,7 +14,7 @@ const routes: Routes = [
   /*   {path:'',component:RegistrationComponent}, */
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
-    
+    {path:"logout",component:LogoutComponent},
     {path:'LazyLoading',loadChildren:()=>import('./lazy-loading/lazy-loading.module').then(m=>m.LazyLoadingModule)},
     {path:'**' , component:PageNotFoundComponent}
 /*     {path:'category',component:CategoryComponent},
