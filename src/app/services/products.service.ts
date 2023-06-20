@@ -6,9 +6,10 @@ import {Iproducts} from "../interfaces/products"
   providedIn: 'root'
 })
 export class ProductsService {
-
-  product={};
+  cartData:any=[];
+  product=[];
   _url='https://store-5hap.onrender.com/product';
+  static cartData: any;
 
   constructor(private http:HttpClient) { }
 
@@ -43,5 +44,9 @@ export class ProductsService {
     return throwError(()=>err.message || "Server error")
    }));
   }
+
+
+
+ 
 
 }

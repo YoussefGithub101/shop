@@ -19,10 +19,11 @@ export class SearchProductsComponent implements OnInit{
   SearchID:any;
   Searchdata:any=[]
   errorMessage: any;
-  constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){}
+  cartData1:any=[]
+  constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){
+    this.cartData1= ProductsService.cartData
 
-
-
+  }
   ngOnInit(): void {
    this.activatedRoute.paramMap.subscribe((params:ParamMap)=>{
     this.SearchID=params.get("searchProduct")
@@ -53,5 +54,19 @@ onTableDataChange(event:any){
   this.getproduct();
 }
  
+addToCart(id:any){
+  const cart = this.Searchdata.filter((producta:any) =>producta.id === id);
+   const x:any = localStorage.getItem("myCart");
+     const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
+     if(foundObject){
+       console.log("this cart is already added")
+       alert("this cart is already added");
+     }else{
+       this.cartData1.push(cart[0])
+       localStorage.setItem('myCart', JSON.stringify(this.cartData1))
+       alert("cart added");
+     }
+ }
+
 
 }

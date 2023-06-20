@@ -19,7 +19,11 @@ export class CategoriesComponent implements OnInit{
  
   categoriesName:any= [];
   categorieid:any;
-constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){}
+  cartData1:any=[];
+constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){
+this.cartData1=ProductsService.cartData
+
+}
 
 
 
@@ -50,7 +54,7 @@ goToproductID(id:any){
 getproductCate(){
 
   this.categoriesName = this.product.filter((producta:any) =>producta.category == this.categorieid);
-  console.log(this.categoriesName)
+  
   
 }
 
@@ -60,6 +64,18 @@ onTableDataChange(event:any){
 }
  
 
-
+addToCart(id:any){
+  const cart = this.product.filter((producta:any) =>producta.id === id);
+   const x:any = localStorage.getItem("myCart");
+     const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
+     if(foundObject){
+      console.log("this cart is already added")
+      alert("this cart is already added");
+     }else{
+       this.cartData1.push(cart[0])
+       localStorage.setItem('myCart', JSON.stringify(this.cartData1))
+       alert("cart added");
+     }
+ }
 
 }

@@ -25,9 +25,11 @@ export class ShopComponent implements OnInit  {
   errorMessage:any;
   uniqueItems:any;
   categories:any=[]
-  
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2,private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, public  router:Router , private http: HttpClient){ }
+   
+  cartData1:any=[];
+  constructor(private elementRef: ElementRef, private renderer: Renderer2,private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, public  router:Router , private http: HttpClient){ 
+   this.cartData1= ProductsService.cartData
+  }
 
  
   ngOnInit(): void{
@@ -36,7 +38,7 @@ export class ShopComponent implements OnInit  {
 
 
     this.getAllproduct()
- 
+    
 
     
   }
@@ -48,12 +50,28 @@ export class ShopComponent implements OnInit  {
             this.product=data
              
             this.categories= Array.from(new Set(this.product.map((product: any) => product.category)));
-           
+            /* this.addToCart() */
 
           },error:error=>this.errorMessage=error
         })
 
       }
+
+
+      addToCart(id:any){
+       const cart = this.product.filter((producta:any) =>producta.id === id);
+        const x:any = localStorage.getItem("myCart");
+          const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
+          if(foundObject){
+            console.log("this cart is already added")
+            alert("this cart is already added");
+          }else{
+           this.cartData1.push(cart[0])
+            localStorage.setItem('myCart', JSON.stringify(this.cartData1))
+            alert("cart added");
+          }
+      }
+      
  
       goCategorie(categorie:any){
         this.router.navigate(["categorie/",categorie],{relativeTo:this.activatedRoute})

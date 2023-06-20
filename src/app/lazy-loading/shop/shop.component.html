@@ -59,7 +59,7 @@
 							<p class="product-price" style="color: black;"> {{prod.price-(prod.price *(prod.discountPercentage/100)) | currency}}  </p>
 							<p class="product-price">  <del style="color: #F28123;">${{prod.price}}</del>  </p>
 							</div>
-							<a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+							<a href="javascript:void(0)" class="cart-btn" (click)="addToCart(prod.id)"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
 						</div>
 					</div>
 				
