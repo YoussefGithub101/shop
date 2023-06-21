@@ -14,7 +14,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { SingleProductComponent } from './lazy-loading/single-product/single-product.component';
 import { CategoriesComponent } from './lazy-loading/categories/categories.component';
 import { AboutComponent } from './about/about.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LogoutComponent } from './logout/logout.component';
 import { ReactiveFormsModule } from '@angular/forms';

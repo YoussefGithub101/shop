@@ -67,17 +67,17 @@
                                 </tr>
                                 <tr class="total-data">
                                     <td><strong>Shipping: </strong></td>
-                                    <td>$45</td>
+                                    <td>$20</td>
                                 </tr>
                                 <tr class="total-data">
                                     <td><strong>Total: </strong></td>
-                                    <td>{{totalPrice| currency}}</td>
+                                    <td>{{totalPrice + 20| currency}}</td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="cart-buttons">
                             <!-- <a href="cart.html" class="boxed-btn">Update Cart</a> -->
-                            <a href="checkout.html" class="boxed-btn black">Check Out</a>
+                            <a  (click)="isLogIn()" class="boxed-btn black">Check Out</a>
                         </div>
                     </div>
     
