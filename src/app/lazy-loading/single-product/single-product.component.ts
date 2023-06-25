@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
@@ -14,8 +15,8 @@ export class SingleProductComponent  implements OnInit{
   SingleProductID:any;
   errorMessage: any;
   cartData1:any=[];
-   
-  constructor(private activated:ActivatedRoute, private http: HttpClient,private ProductsService:ProductsService){
+   product:any=[]
+  constructor(private activated:ActivatedRoute, private http: HttpClient,private ProductsService:ProductsService,private CartService:CartService){
     this.cartData1= ProductsService.cartData
   }
 
@@ -29,27 +30,16 @@ export class SingleProductComponent  implements OnInit{
     this.ProductsService.getproductID(this.SingleProductID).subscribe({
       next:(data:any)=>{
         this.SingleProductdata=data
-         console.log(this.SingleProductdata)
+         this.product.push(data)
          
          
       },error:error=>this.errorMessage=error
     })
 
   }
+ 
   addToCart(id:any){
-    
-    
-    const x:any = localStorage.getItem("myCart");
-      const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
-      if(foundObject){
-        console.log("this cart is already added")
-        alert("this cart is already added");
-      }else{
-       this.cartData1.push(this.SingleProductdata)
-        localStorage.setItem('myCart', JSON.stringify(this.cartData1))
-        alert("cart added");
-      }
-   }
-  
+    this.CartService.addToCart(id,this.product)
+  }
   }
 

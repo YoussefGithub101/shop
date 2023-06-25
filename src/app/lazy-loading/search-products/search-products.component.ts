@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component ,OnInit} from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-search-products',
   templateUrl: './search-products.component.html',
@@ -17,10 +18,10 @@ export class SearchProductsComponent implements OnInit{
 
 
   SearchID:any;
-  Searchdata:any=[]
+  product:any=[]
   errorMessage: any;
   cartData1:any=[]
-  constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){
+  constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient,private CartService:CartService){
     this.cartData1= ProductsService.cartData
 
   }
@@ -36,8 +37,8 @@ export class SearchProductsComponent implements OnInit{
 getproduct(){
   this.ProductsService.getproductSearch(this.SearchID).subscribe({
     next:(data:any)=>{
-      this.Searchdata=data
-       console.log(this.Searchdata)
+      this.product=data
+      
        
     },error:error=>this.errorMessage=error
   })
@@ -54,19 +55,21 @@ onTableDataChange(event:any){
   this.getproduct();
 }
  
+// addToCart(id:any){
+//   const cart = this.Searchdata.filter((producta:any) =>producta.id === id);
+//    const x:any = localStorage.getItem("myCart");
+//      const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
+//      if(foundObject){
+//        console.log("this cart is already added")
+//        alert("this cart is already added");
+//      }else{
+//        this.cartData1.push(cart[0])
+//        localStorage.setItem('myCart', JSON.stringify(this.cartData1))
+//        alert("cart added");
+//      }
+//  }
 addToCart(id:any){
-  const cart = this.Searchdata.filter((producta:any) =>producta.id === id);
-   const x:any = localStorage.getItem("myCart");
-     const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
-     if(foundObject){
-       console.log("this cart is already added")
-       alert("this cart is already added");
-     }else{
-       this.cartData1.push(cart[0])
-       localStorage.setItem('myCart', JSON.stringify(this.cartData1))
-       alert("cart added");
-     }
- }
-
+  this.CartService.addToCart(id,this.product)
+}
 
 }

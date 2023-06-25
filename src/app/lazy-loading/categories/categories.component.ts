@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router} from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
 import {Iproducts} from "src/app/interfaces/products"
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
@@ -20,7 +21,7 @@ export class CategoriesComponent implements OnInit{
   categoriesName:any= [];
   categorieid:any;
   cartData1:any=[];
-constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient){
+constructor(private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, private router:Router , private http: HttpClient ,private CartService:CartService){
 this.cartData1=ProductsService.cartData
 
 }
@@ -64,18 +65,21 @@ onTableDataChange(event:any){
 }
  
 
+// addToCart(id:any){
+//   const cart = this.product.filter((producta:any) =>producta.id === id);
+//    const x:any = localStorage.getItem("myCart");
+//      const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
+//      if(foundObject){
+//       console.log("this cart is already added")
+//       alert("this cart is already added");
+//      }else{
+//        this.cartData1.push(cart[0])
+//        localStorage.setItem('myCart', JSON.stringify(this.cartData1))
+//        alert("cart added");
+//      }
+//  }
 addToCart(id:any){
-  const cart = this.product.filter((producta:any) =>producta.id === id);
-   const x:any = localStorage.getItem("myCart");
-     const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
-     if(foundObject){
-      console.log("this cart is already added")
-      alert("this cart is already added");
-     }else{
-       this.cartData1.push(cart[0])
-       localStorage.setItem('myCart', JSON.stringify(this.cartData1))
-       alert("cart added");
-     }
- }
+  this.CartService.addToCart(id,this.product)
+}
 
 }

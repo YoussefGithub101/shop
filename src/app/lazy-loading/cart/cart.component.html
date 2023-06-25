@@ -41,11 +41,12 @@
                                     <td class="product-image"><img src={{cart.thumbnail}} alt=""></td>
                                     <td class="product-name">{{cart.title}}</td>
                                     <td class="product-price">{{cart.price-(cart.price *(cart.discountPercentage/100)) | currency}} </td>
-                                    <td class="product-quantity"><input type="number" placeholder="1"></td>
+                                    <td class="product-quantity"><input type="number" placeholder="1" min="1" max={{cart.stock}}></td>
                                     <td class="product-total">{{i+1}}</td>
                                 </tr>
     
-     
+                                
+
                             </tbody>
                         </table>
                     </div>

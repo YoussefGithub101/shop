@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
+import { CartService } from 'src/app/services/cart.service';
 import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-shop',
@@ -27,14 +28,15 @@ export class ShopComponent implements OnInit  {
   categories:any=[]
    
   cartData1:any=[];
-  constructor(private elementRef: ElementRef, private renderer: Renderer2,private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, public  router:Router , private http: HttpClient){ 
-   this.cartData1= ProductsService.cartData
+  constructor(private elementRef: ElementRef, private renderer: Renderer2,private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, public  router:Router , private http: HttpClient ,private CartService:CartService){ 
+    this.cartData1= ProductsService.cartData;
+ 
   }
 
  
   ngOnInit(): void{
  
-
+   
 
 
     this.getAllproduct()
@@ -48,9 +50,10 @@ export class ShopComponent implements OnInit  {
         this.ProductsService.getAllproducts().subscribe({
           next:(data:any)=>{
             this.product=data
+           
              
             this.categories= Array.from(new Set(this.product.map((product: any) => product.category)));
-            /* this.addToCart() */
+        
 
           },error:error=>this.errorMessage=error
         })
@@ -58,21 +61,25 @@ export class ShopComponent implements OnInit  {
       }
 
 
+      // addToCart(id:any){
+      //  const cart = this.product.filter((producta:any) =>producta.id === id);
+      //   const x:any = localStorage.getItem("myCart");
+      //     const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
+      //     if(foundObject){
+      //       console.log("this cart is already added")
+      //       alert("this cart is already added");
+      //     }else{
+      //      this.cartData1.push(cart[0])
+      //       localStorage.setItem('myCart', JSON.stringify(this.cartData1))
+      //       alert("cart added");
+      //     }
+      // }
       addToCart(id:any){
-       const cart = this.product.filter((producta:any) =>producta.id === id);
-        const x:any = localStorage.getItem("myCart");
-          const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
-          if(foundObject){
-            console.log("this cart is already added")
-            alert("this cart is already added");
-          }else{
-           this.cartData1.push(cart[0])
-            localStorage.setItem('myCart', JSON.stringify(this.cartData1))
-            alert("cart added");
-          }
+        this.CartService.addToCart(id,this.product)
       }
       
- 
+
+
       goCategorie(categorie:any){
         this.router.navigate(["categorie/",categorie],{relativeTo:this.activatedRoute})
          

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
-
+import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -11,16 +11,19 @@ export class CartComponent implements OnInit{
   cartStorge:any=[];
   totalPrice:number=0 
   showDiv = true;
-  cartData1:any[]
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private ProductsService:ProductsService, private _Router:Router){
-    this.cartData1=ProductsService.cartData
-    ProductsService.cartData=this.cartStorge
+  cartData1:any=[]
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private ProductsService:ProductsService, private _Router:Router ,private CartService:CartService){
+ /*    this.cartStorge=ProductsService.cartData */
+    
+    /* this.cartData1=ProductsService.cartData */
   }
 
 
   ngOnInit(): void {
-    this.cartStorge=localStorage.getItem("myCart")
-   this.cartStorge=JSON.parse(this.cartStorge)
+    this.cartStorge=this.CartService.getCart()
+  //   console.log(this.cartStorge)
+  //  this.cartStorge=JSON.parse(this.cartStorge)
+  //  console.log( this.cartStorge)
   
    this.getTotalPrice()
 

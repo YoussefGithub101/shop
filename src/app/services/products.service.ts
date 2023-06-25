@@ -6,17 +6,17 @@ import {Iproducts} from "../interfaces/products"
   providedIn: 'root'
 })
 export class ProductsService {
-  cartData:any=[];
+  cartData:Iproducts[]=[];
   product=[];
   _url='https://store-5hap.onrender.com/product';
-  static cartData: any;
+  
 
   constructor(private http:HttpClient) { }
 
 
   getAllproducts():Observable<Iproducts[]>
   {
-   //return this.employees;
+    
    return this.http.get<Iproducts[]>(this._url).pipe(catchError((err)=>{
     return throwError(()=>err.message || "Server error")
    }));
@@ -28,7 +28,7 @@ export class ProductsService {
 
   getproductID(SingleProductID:number):Observable<Iproducts[]>
   {
-   //return this.employees;
+   
    return this.http.get<Iproducts[]>(`https://store-5hap.onrender.com/product/${SingleProductID}`).pipe(catchError((err)=>{
     return throwError(()=>err.message || "Server error")
    }));
@@ -39,7 +39,7 @@ export class ProductsService {
  
   getproductSearch (SearchID:string):Observable<Iproducts[]>
   {
-   //return this.employees;
+   
    return this.http.get<Iproducts[]>(`https://store-5hap.onrender.com/search?q=${SearchID}`).pipe(catchError((err)=>{
     return throwError(()=>err.message || "Server error")
    }));
