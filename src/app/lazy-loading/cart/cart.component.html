@@ -41,8 +41,18 @@
                                     <td class="product-image"><img src={{cart.thumbnail}} alt=""></td>
                                     <td class="product-name">{{cart.title}}</td>
                                     <td class="product-price">{{cart.price-(cart.price *(cart.discountPercentage/100)) | currency}} </td>
-                                    <td class="product-quantity"><input type="number" placeholder="1" min="1" max={{cart.stock}}></td>
+                                    <td class="product-quantity">
+                                        <div class="wrapper">
+                                            <span class="minus" (click)=" decreaseQuantity(cart.id)"
+                                            [ngClass]="cart.Quantity === 1 ? 'gray' : 'black'">-</span>
+                                            <span class="num">{{cart.Quantity}}</span>
+                                            <span class="plus" (click)="incrementQuantity(cart.id)"
+                                            [ngClass]="cart.Quantity === cart.stock ? 'gray' : 'black'">+</span>
+                                          </div>
+                                           </td>
                                     <td class="product-total">{{i+1}}</td>
+                                  <!--   <td> <button type="button" (click)="printValue('id_'+i)"> buton {{i}}   </button></td>
+                                <input type="number" [id]="'gg'+i"  value="1" min="1" max={{cart.stock}}> -->
                                 </tr>
     
                                 

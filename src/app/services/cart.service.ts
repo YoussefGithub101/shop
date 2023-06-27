@@ -6,13 +6,14 @@ import { Injectable } from '@angular/core';
 export class CartService {
   cartData:any= [] ;
   
+  
   constructor() { 
     this.test();
   }
   
  
 test(){
-  if(this.cartData==null){
+  if(localStorage.getItem("myCart")===null){
     this.cartData=[];
   } else{
     this.cartData=localStorage.getItem("myCart")
