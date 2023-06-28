@@ -5,7 +5,6 @@ import { CategoriesComponent } from './categories/categories.component';
 import { SingleProductComponent } from './single-product/single-product.component';
 import { SearchProductsComponent } from './search-products/search-products.component';
 import { CartComponent } from './cart/cart.component';
-import { PaymentComponent } from './payment/payment.component';
  
 
 const routes: Routes = [
@@ -17,7 +16,6 @@ const routes: Routes = [
 
   {path:'Shop/:id',component:SingleProductComponent},
   {path:'cart',component:CartComponent},
-  {path:'payment',component:PaymentComponent},
 ];
 
 @NgModule({

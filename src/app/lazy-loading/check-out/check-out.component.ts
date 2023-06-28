@@ -74,4 +74,5 @@ export class CheckOutComponent implements OnInit {
          console.log(this.finalInformation)
        }
   }
+  
 }
