@@ -22,26 +22,35 @@ test(){
 }
 
 
-  addToCart(id:any , data:any){
+  addToCart(id:any , data:any ,AlertAdd:string ,notAdded:string){
 
     this.test();
-
     const cart = data.filter((producta:any) =>producta.id === id);
     cart[0].Quantity =1
      const x:any = localStorage.getItem("myCart");
        const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
        if(foundObject){
-         console.log("this cart is already added")
-         alert("this cart is already added");
+        this.alertFunction(notAdded)
        }else{
-
-
         this.cartData.push(cart[0])
          localStorage.setItem('myCart', JSON.stringify(this.cartData))
-         alert("cart added");
+         this.alertFunction(AlertAdd)
        }
    }
+
+
+
+
    getCart(){
     return this.cartData
    }
+
+
+   alertFunction(Alert:string) {
+    const alert1 = <HTMLInputElement> document.getElementById(Alert);
+    console.log(alert1)
+    alert1.className = "show";
+    setTimeout(function(){ alert1.className = alert1.className.replace("show",""); }, 1000);
+  }
+
 }

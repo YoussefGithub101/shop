@@ -39,7 +39,7 @@ export class SingleProductComponent  implements OnInit{
   }
  
   addToCart(id:any){
-    this.CartService.addToCart(id,this.product)
+    this.CartService.addToCart(id,this.product,"alertAdd","alertNotadded")
   }
   }
 

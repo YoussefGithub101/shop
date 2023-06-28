@@ -69,7 +69,7 @@ onTableDataChange(event:any){
 //      }
 //  }
 addToCart(id:any){
-  this.CartService.addToCart(id,this.product)
+  this.CartService.addToCart(id,this.product,"alertAdd","alertNotadded")
 }
 
 }
