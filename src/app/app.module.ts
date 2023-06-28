@@ -18,6 +18,7 @@ import { FormsModule} from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { LogoutComponent } from './logout/logout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AboutComponent,
     LogoutComponent,
     
+    
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

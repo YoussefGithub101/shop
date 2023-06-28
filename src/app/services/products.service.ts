@@ -10,7 +10,12 @@ export class ProductsService {
   product=[];
   _url='https://store-5hap.onrender.com/product';
   
+make(token:any):Observable<any>
+{
+  const url=`https://store-5hap.onrender.com/create-payment-intent`
+  return this.http.post(url,{token})
 
+}
   constructor(private http:HttpClient) { }
 
 

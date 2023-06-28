@@ -8,11 +8,13 @@ import { CartComponent } from './cart/cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { PaymentComponent } from './payment/payment.component';
 @NgModule({
   declarations: [
     SearchProductsComponent,
     CartComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
