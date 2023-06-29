@@ -28,6 +28,7 @@ export class ShopComponent implements OnInit  {
   categories:any=[]
    
   cartData1:any=[];
+  isLoaded:boolean=true;
   constructor(private elementRef: ElementRef, private renderer: Renderer2,private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, public  router:Router , private http: HttpClient ,private CartService:CartService){ 
     this.cartData1= ProductsService.cartData;
  
@@ -50,10 +51,8 @@ export class ShopComponent implements OnInit  {
         this.ProductsService.getAllproducts().subscribe({
           next:(data:any)=>{
             this.product=data
-           
-             
             this.categories= Array.from(new Set(this.product.map((product: any) => product.category)));
-        
+            this.isLoaded=false;
 
           },error:error=>this.errorMessage=error
         })
@@ -77,10 +76,10 @@ export class ShopComponent implements OnInit  {
       
 
       goToproductID(id:any){
-        this.router.navigate(["/LazyLoading/Shop",id])
+        this.router.navigate(["/store/Shop",id])
       }
       getAllCategories(){
-        this.router.navigate(["/LazyLoading/Shop"])
+        this.router.navigate(["/store/Shop"])
          
       }
 

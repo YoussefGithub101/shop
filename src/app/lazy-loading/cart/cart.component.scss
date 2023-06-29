@@ -528,3 +528,10 @@ cursor:default;
 color:black
  }
   
+ a.cart-btn {
+  transition: 0.3s;
+}
+a.cart-btn:hover {
+  background-color: #051922;
+  color: #F28123;
+}

@@ -46,7 +46,7 @@ getproduct(){
 
 
 goToproductID(id:any){
-  this.router.navigate(["/LazyLoading/Shop",id])
+  this.router.navigate(["/store/Shop",id])
 }
 
 

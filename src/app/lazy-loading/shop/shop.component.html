@@ -10,6 +10,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="wrapper">
 	<!-- Sidebar -->
 	<nav id="sidebar">
@@ -20,9 +21,9 @@
 		<ul class="list-unstyled components">
 			 
 
-			<li    (click)="getAllCategories()"><a    href="javascript:void(0)">All</a> </li>
+			<li><a routerLink="/store/Shop" routerLinkActive="activeLink" [routerLinkActiveOptions]="{exact: true}">All</a> </li>
 			
-			<li *ngFor="let prod of categories index as i" (click)="goCategorie(prod)"> <a href="javascript:void(0)" >{{prod}}</a></li>
+			<li *ngFor="let prod of categories index as i"> <a [routerLink]="['categorie/',prod]" routerLinkActive="activeLink">{{prod}}</a></li>
 		</ul>
 	</nav>
 	<div id="content" style=" width: 100%;" >
@@ -39,9 +40,12 @@
 		 <div class="product-section  ">
 			<div class="container">
 	
- 
-	
-				<ng-template [ngIf]="(this.router.url=='/LazyLoading/Shop') ? true : false">
+				<div class="loading-bar"  *ngIf="isLoaded">
+					Loading
+				</div>
+				
+
+				<ng-template [ngIf]="(this.router.url=='/store/Shop') ? true : false">
 				<div class="row product-lists">
 						
 						
@@ -98,13 +102,7 @@
 	
 </div>
 <br>
-
-
-	
-
-
-
-
+ 
 
 
 

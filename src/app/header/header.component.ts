@@ -16,7 +16,7 @@ constructor(public _userService : UserService,private ProductsService:ProductsSe
 
 
 goCategorie(search:string){
-  this.router.navigate(["LazyLoading/Shop/search/",search],{relativeTo:this.activatedRoute})
+  this.router.navigate(["store/Shop/search/",search],{relativeTo:this.activatedRoute})
 }
 
 ngOnInit(): void 
