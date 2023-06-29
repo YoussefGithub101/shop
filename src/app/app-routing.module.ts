@@ -16,7 +16,6 @@ const routes: Routes = [
   /*   {path:'',component:RegistrationComponent}, */
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
-    {path:"logout",component:LogoutComponent},
     {path:"checkOut",component:CheckOutComponent},
     {path:'store',loadChildren:()=>import('./lazy-loading/lazy-loading.module').then(m=>m.LazyLoadingModule)},
     {path:'**' , component:PageNotFoundComponent}

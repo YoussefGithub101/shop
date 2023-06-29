@@ -2,7 +2,8 @@ import { Component, ElementRef, OnChanges, OnInit, Renderer2, SimpleChanges } fr
 import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { CartService } from 'src/app/services/cart.service';
- 
+import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -80,8 +81,13 @@ ngOnChanges(changes: SimpleChanges): void {
                  this._Router.navigate(["/checkOut"])
         }
         else{
-          alert("plase SignIn")
-          this._Router.navigate(["/register"])
+          Swal.fire({
+            title: "login...",
+            icon: "error",
+            customClass: {
+            container: 'my-custom-shape-container'}
+          });
+          this._Router.navigate(["/login"])
         }
       }
 }

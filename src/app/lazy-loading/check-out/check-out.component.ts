@@ -46,7 +46,11 @@ export class CheckOutComponent implements OnInit {
         })
       },onError:((error:any)=>
       {
-        Swal.fire(error, "You clicked the button!", "success");
+        Swal.fire({
+          icon: "error",
+          title: error,
+          text: "Something went wrong!",
+        });
       })
     }).render(this.paymentRef.nativeElement)
    }

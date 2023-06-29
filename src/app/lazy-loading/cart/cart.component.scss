@@ -11,6 +11,14 @@ Version: 1.0
 # Base - Genral & Typography
 
 ----------------------------------------------------------------------------- */
+.my-custom-shape-container {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
 html {
     font-size: 14px;
     font-weight: 400;
