@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     SearchProductsComponent,
     CartComponent,
-    CheckOutComponent
+    CheckOutComponent,
   ],
   imports: [
     CommonModule,
