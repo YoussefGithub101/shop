@@ -17,7 +17,7 @@ export class CartComponent implements OnInit, OnChanges{
   showDiv = true;
   cartData1:any=[]
  
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private ProductsService:ProductsService, private _Router:Router ,private CartService:CartService){
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private ProductsService:ProductsService, private _Router:Router ,public CartService:CartService){
  
   }
   
@@ -44,7 +44,10 @@ ngOnChanges(changes: SimpleChanges): void {
      const Quantity = this.cartStorge[Index].Quantity
      this.cartStorge[Index].price = (price * Quantity)/(Quantity-1)  
      localStorage.setItem('myCart',JSON.stringify(this.cartStorge))
+     //update Total price
      this.getTotalPrice()
+     //update cart icon count
+     this.CartService.updateTotalQuantity()
    }
   }
   decreaseQuantity(id:number){
@@ -55,7 +58,10 @@ ngOnChanges(changes: SimpleChanges): void {
       const Quantity = this.cartStorge[Index].Quantity
       this.cartStorge[Index].price = (price * Quantity)/(Quantity+1)  
       localStorage.setItem('myCart',JSON.stringify(this.cartStorge))
-      this.getTotalPrice()
+           //update Total price
+     this.getTotalPrice()
+     //update cart icon count
+     this.CartService.updateTotalQuantity()
     }  
   }
 
@@ -64,8 +70,10 @@ ngOnChanges(changes: SimpleChanges): void {
   
     this.cartStorge = this.cartStorge.filter((producta:any) =>producta.id !== id);
     localStorage.setItem('myCart',JSON.stringify(this.cartStorge))
-   
-    this.getTotalPrice()
+           //update Total price
+           this.getTotalPrice()
+           //update cart icon count
+           this.CartService.updateTotalQuantity()
   }
       getTotalPrice(){
         this.totalPrice=0

@@ -36,7 +36,11 @@
 
                             <li>
                                 <div class="header-icons">
-                                    <a class="shopping-cart" routerLink="/store/cart"><i class="fas fa-shopping-cart"></i></a>
+                                     
+                                        <a class="shopping-cart wrapperCart" routerLink="/store/cart">
+                                            <i class="fas fa-shopping-cart" ></i></a> <!-- cart -->
+                                            <span class="CartCount">{{CartService.totalQuantity}}</span>
+                                     
                                     <a class="mobile-hide search-bar-icon" href="javascript:void(0)"><i class="fas fa-search"></i></a>
                                 </div>
                             </li>

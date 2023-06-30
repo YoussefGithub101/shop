@@ -6,8 +6,10 @@ import { Ioffers, Iproducts } from '../interfaces/products';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
+
 export class MainComponent {
   constructor(private proudctService:ProductsService){}
+   
   sale:number=50;
   priceOffer:number=.3;
   bgImg:string="assets/img/img/8.jpg";
@@ -32,10 +34,17 @@ ngOnInit():void
   {
     this.proudctService.getAllproducts().subscribe(
       {
-        next:data=>this.sectionProudcts=data,
+        next:data=>
+        {
+          this.sectionProudcts=data
+          this.sectionProudcts.sort((a:any, b:any) => b.discountPercentage - a.discountPercentage);
+          this.sectionProudcts = this.sectionProudcts.slice(0, 3);
+          console.log(this.sectionProudcts)
+        },
+
         error:err=> this.err=err
       }
     )
   }
-
+  
 }

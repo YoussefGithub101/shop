@@ -48,14 +48,18 @@
             </div>
         </div>
         <div class="row ">   <!-- d-flex align-items-stretch-->
-            <div class="col-lg-4 col-md-6 text-center" *ngFor="let pr of sectionProudcts let i=index" >
-                <div class="single-product-item" *ngIf="i<3">
+            <div class="col-lg-4 col-md-6 text-center" *ngFor="let prod of sectionProudcts" >
+                <div class="single-product-item" >
                     <div class="product-image">
-                        <a routerLink="/single-product"><img [src]="pr.images[0]" [alt]="pr.description" style="height: 250px;"></a>
+                        <a ><img src={{prod.thumbnail}} alt="" ></a>
                     </div>
-                    <h3>{{pr.title}}</h3>
-                    <p class="product-price"><span></span>{{pr.price |currency}}</p>
-                    <a routerLink="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <h3>{{prod.title}}</h3>
+                    <span>{{prod.brand}}</span>
+                    <div class="d-flex  justify-content-around flex-wrap">
+                    <p class="product-price" style="color: black;"> {{prod.price-(prod.price *(prod.discountPercentage/100)) | currency}}  </p>
+                    <p class="product-price">  <del style="color: #F28123;">${{prod.price}}</del>  </p>
+                    </div>
+                    <a href="javascript:void(0)" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
         </div>
