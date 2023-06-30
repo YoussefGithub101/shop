@@ -11,7 +11,8 @@ import Swal from 'sweetalert2';
   styleUrls: ['./single-product.component.scss']
 })
 export class SingleProductComponent  implements OnInit{
-   
+  rating: number;
+
   SingleProductdata:any=[];
   
   SingleProductID:any;
@@ -23,8 +24,7 @@ export class SingleProductComponent  implements OnInit{
   constructor(private activated:ActivatedRoute, private http: HttpClient,private ProductsService:ProductsService,private CartService:CartService ,private fb:FormBuilder,  private _Router:Router    ){
     this.cartData1= ProductsService.cartData
   }
-
-
+  
   ngOnInit(): void {
       this.SingleProductID=this.activated.snapshot.paramMap.get('id')
       console.log(this.SingleProductID)
@@ -55,7 +55,7 @@ export class SingleProductComponent  implements OnInit{
           if(this.formComment.valid){
             this.comments.push(this.formComment.value)
             this.formComment.reset()
-          Swal.fire("comment success!", "Your payment has been processed successfully.", "success");
+          Swal.fire("comment success!", "You added new comment", "success");
           }else
           {
             Swal.fire({
@@ -74,5 +74,22 @@ export class SingleProductComponent  implements OnInit{
           this._Router.navigate(["/login"])
         }
       }
+      setRating(value: number) {
+        if(localStorage.getItem("data") != null )
+        {
+          this.rating = value;
+          Swal.fire("Rating success!", "You added new Rate", "success");
+        }
+        
+        else{
+          Swal.fire({
+            title: "login Please...",
+            icon: "error",
+            customClass: {container: 'my-custom-shape-container'}
+          });
+        }
+      }
+
+
   }
 
