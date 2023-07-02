@@ -1,51 +1,48 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
-declare var paypal:any;
+declare var paypal: any;
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
   styleUrls: ['./check-out.component.scss']
 })
 export class CheckOutComponent implements OnInit {
-  @ViewChild('paymentRef',{static:true})  paymentRef!:ElementRef;
+  @ViewChild('paymentRef', { static: true }) paymentRef!: ElementRef;
 
-  mycart:any=localStorage.getItem("myCart");
-  totalPrice:number=0 ;
-
-  Myarray:any=JSON.parse(this.mycart);
-  constructor() { }
-  ngOnInit() { 
-    
+  mycart: any = localStorage.getItem("myCart");
+  totalPrice: number = 0;
+  Myarray: any = JSON.parse(this.mycart);
+  constructor(private paymentService: UserService) { }
+  ngOnInit() {
     this.getTotalPrice()
     paypal.Buttons({
       style:
       {
-        layout:'horizontal',
-        color:'gold',
-        shape:'pill', //rect
-        label:'paypal',
-        tagline :false
+        layout: 'horizontal',
+        color: 'gold',
+        shape: 'pill', //rect
+        label: 'paypal',
+        tagline: false
       },
-      createOrder:(data:any, actions:any)=>
-      {
+      createOrder: (data: any, actions: any) => {
         return actions.order.create({
-          purchase_units:[
+          purchase_units: [
             {
-              amount:{value:this.totalPrice.toFixed(2),currency_code:'USD'},
+              amount: { value: this.totalPrice.toFixed(2), currency_code: 'USD' },
             },
           ]
         })
       },
-      onApprove:(data:any,actions:any)=>
-      {
-        return actions.order.get().then((Daitails:any)=>{
-          let result= Object.assign({},Daitails,{clientData:this.finalInformation.value})
+      onApprove: (data: any, actions: any) => {
+        return actions.order.get().then((Daitails: any) => {
+          let result = Object.assign({}, Daitails, { clientData: this.finalInformation.value }, { proudctsDitails: this.Myarray }, { clientId: this.paymentService.userIdData() })
+          this.paymentService.payment(result).subscribe()
           console.log(result)
-          Swal.fire("Payment success!", "Your payment has been processed successfully.", "success");
+          Swal.fire(`Payment success! <br> <h2 style='color:green'>${Daitails.purchase_units[0].amount.value}$</h2>`, "Your payment has been processed successfully.", "success");
         })
-      },onError:((error:any)=>
-      {
+      }, onError: ((error: any) => {
         Swal.fire({
           icon: "error",
           title: error,
@@ -53,30 +50,26 @@ export class CheckOutComponent implements OnInit {
         });
       })
     }).render(this.paymentRef.nativeElement)
-   }
-  finalInformation:FormGroup=new FormGroup(
-    {
-    Name:new FormControl(null,[Validators.required]),
-    Email:new FormControl(null,[Validators.required,Validators.email]),
-    Address:new FormControl(null,[Validators.required]),
-    Phone:new FormControl(null,[Validators.required]),
-   }
-)
-
-   
-    getTotalPrice()
-    {
-      for(let p of this.Myarray)
-      {
-        this.totalPrice += p.price-(p.price *(p.discountPercentage/100));
-      }
-    }
-  dub(finalInformation:FormGroup)
-  {
-       if(finalInformation.valid)
-       {
-         console.log(this.finalInformation)
-       }
   }
-  
+  finalInformation: FormGroup = new FormGroup(
+    {
+      Name: new FormControl(null, [Validators.required]),
+      Email: new FormControl(null, [Validators.required, Validators.email]),
+      Address: new FormControl(null, [Validators.required]),
+      Phone: new FormControl(null, [Validators.required]),
+    }
+  )
+
+
+  getTotalPrice() {
+    for (let p of this.Myarray) {
+      this.totalPrice += p.price - (p.price * (p.discountPercentage / 100));
+    }
+  }
+  dub(finalInformation: FormGroup) {
+    if (finalInformation.valid) {
+      console.log(this.finalInformation)
+    }
+  }
+
 }
