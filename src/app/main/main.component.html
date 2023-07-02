@@ -50,7 +50,7 @@
         <div class="row ">   <!-- d-flex align-items-stretch-->
             <div class="col-lg-4 col-md-6 text-center" *ngFor="let prod of sectionProudcts" >
                 <div class="single-product-item" >
-                    <div class="product-image">
+                    <div class="product-image" (click)="goToproductID(prod.id)">
                         <a ><img src={{prod.thumbnail}} alt="" ></a>
                     </div>
                     <h3>{{prod.title}}</h3>
@@ -59,12 +59,24 @@
                     <p class="product-price" style="color: black;"> {{prod.price-(prod.price *(prod.discountPercentage/100)) | currency}}  </p>
                     <p class="product-price">  <del style="color: #F28123;">${{prod.price}}</del>  </p>
                     </div>
-                    <a href="javascript:void(0)" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                    <a href="javascript:void(0)" class="cart-btn" (click)="addToCart(prod.id)"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+<div id="alertAdd">
+    <div class="checkicon"> <i class="fas fa-check-square"></i> </div>
+    product added to cart!
+</div>
+<div id="alertNotadded" >
+    <div class="checkicon2" style="color: red;"> <i class="fas fa-times"></i> </div>
+    this product is already added to cart!
+</div>
+
+
 
 <section class="cart-banner pt-100 pb-100">
     <div class="container">

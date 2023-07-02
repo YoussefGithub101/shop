@@ -11,11 +11,18 @@
 	</div>
 </div>
 
-<div class="wrapper">
+<div class="wrapper"  >
 	<!-- Sidebar -->
 	<nav id="sidebar">
 		<div class="sidebar-header">
 			<h3 style="color: white;">category</h3>
+			<span>
+				<button type="button" id="sidebarCollapse" (click)="toggleSidebar()" class="btn btn-info btn2" style="
+				background-color: #364B55;">
+				<i class="fas fa-times"></i>
+			 
+			</button>
+			</span>
 		</div>
 
 		<ul class="list-unstyled components">
@@ -38,11 +45,11 @@
 		</nav>
 		 <!-- -------------------------------------------------- -->
 		 <div class="product-section  ">
-			<div class="container">
+			 <svg viewBox="25 25 50 50" *ngIf="isLoaded">
+				 <circle r="20" cy="50" cx="50"></circle>
+			   </svg>
+			<div class="container" *ngIf="!isLoaded">
 	
-				<div class="loading-bar"  *ngIf="isLoaded">
-					Loading
-				</div>
 				
 
 				<ng-template [ngIf]="(this.router.url=='/store/Shop') ? true : false">
