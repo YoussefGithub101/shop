@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AboutComponent } from './about/about.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CheckOutComponent } from './lazy-loading/check-out/check-out.component';
+import { CartComponent } from './lazy-loading/cart/cart.component';
 
 const routes: Routes = [
   {path:'',component:MainComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
     {path:'register',component:RegisterComponent},
     {path:"logout",component:LogoutComponent},
     {path:"checkOut",component:CheckOutComponent},
+    {path:"lazy-loading/cart",component :CartComponent},
     {path:'LazyLoading',loadChildren:()=>import('./lazy-loading/lazy-loading.module').then(m=>m.LazyLoadingModule)},
     {path:'**' , component:PageNotFoundComponent}
 /*     {path:'category',component:CategoryComponent},
