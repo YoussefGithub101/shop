@@ -12,6 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class HeaderComponent implements OnInit {
   /* inputValue: FormControl = new FormControl(); */
   
+
+  name:string="";
   islogin:boolean=false;
   cartCount:number;
   cartData:any=localStorage.getItem("myCart")
@@ -24,10 +26,11 @@ constructor(public _userService : UserService,private activatedRoute: ActivatedR
    
 }
 
-
+  
 goCategorie(search:string){
   this.router.navigate(["store/Shop/search/",search],{relativeTo:this.activatedRoute})
 }
+
 
 ngOnInit(): void 
 {
@@ -37,10 +40,14 @@ ngOnInit(): void
      if(this._userService.userData.getValue() != null)
      {
        this.islogin=true;
+       this.name=this._userService.saveUserData()
+       
      }
      else
      {
        this.islogin=false;
+
+      
      }
    })
    
