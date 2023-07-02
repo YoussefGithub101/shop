@@ -42,7 +42,12 @@
                                             <span class="CartCount">{{CartService.totalQuantity}}</span>
                                      
                                     <a class="mobile-hide search-bar-icon" href="javascript:void(0)"><i class="fas fa-search"></i></a>
-                                </div>
+                                    <a>
+                                        <div *ngIf="islogin" class="jj d-inline ">{{name}}</div>
+                                   
+                                      
+                                    </a>
+                                   </div> 
                             </li>
                         </ul>
                     </nav>

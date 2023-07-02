@@ -41,31 +41,31 @@
                         <div class="col-md-12 form-group">
                             <input  type="text" formControlName="firstName" class="form-control" name="firstName"  placeholder="firstName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'firstName'">
                             <div  class=" pt-3" *ngIf='form.get("firstName")?.errors !=null && form.get("firstName")?.touched' role="alert">
-                                <p class="bkm alert ">firstName is required</p>
+                                <p class="bkm alert "> <i class="fa-solid fa-exclamation mx-2"></i>firstName is required</p>
                               </div>
                         </div>
                         <div class="col-md-12 form-group">
                             <input  type="text" formControlName="lastName" class="form-control" name="lastName"  placeholder="lastName" onfocus="this.placeholder = ''" onblur="this.placeholder = 'lastName'">
                             <div  class=" pt-3" *ngIf='form.get("lastName")?.errors !=null && form.get("lastName")?.touched' role="alert">
-                                <p class="bb alert ">lastName is required</p>
+                                <p class="bb alert "> <i class="fa-solid fa-exclamation mx-2"></i>lastName is required</p>
                               </div>
                         </div>
                         <div class="col-md-12 form-group">
                             <input type="email" formControlName="email" class="form-control"  name="email"  placeholder="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'email'">
                             <div  class=" pt-3" *ngIf='form.get("email")?.errors !=null && form.get("email")?.touched'   role="alert">
-                                <p class="bb alert " *ngIf='form.get("email")?.errors?.["required"]' >email is required</p>
-                                <p  class="bb alert " *ngIf='form.get("email")?.errors?.["email"]'>email is invalid</p>
+                                <p class="bnm alert " *ngIf='form.get("email")?.errors?.["required"]' > <i class="fa-solid fa-exclamation mx-2"></i>email is required</p>
+                                <p  class="bnm alert " *ngIf='form.get("email")?.errors?.["email"]'> <i class="fa-solid fa-exclamation mx-2"></i>email is invalid</p>
                            
                               </div>
                         </div>
-                        <div *ngIf='error' class="bk alert ">
-                            {{error}}
+                        <div *ngIf='error'  class="bk alert ">
+                            <i class="fa-solid fa-exclamation mx-2"></i> {{error}}
                            </div>  
                         <div class="col-md-12 form-group">
                             <input  type="password" formControlName="password" class="form-control"  name="password"  placeholder="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'password'">
                             <div class=" pt-3" *ngIf='form.get("password")?.errors !=null && form.get("password")?.touched' role="alert">
-                                <p class="bb alert " *ngIf='form.get("password")?.errors?.["required"]'  >password is required</p>
-                                <p class="bb alert " *ngIf='form.get("password")?.errors?.["minlength"]' >password is invalid</p>
+                                <p class="bb alert " *ngIf='form.get("password")?.errors?.["required"]'  > <i class="fa-solid fa-exclamation mx-2"></i>password is required</p>
+                                <p class="bb alert " *ngIf='form.get("password")?.errors?.["minlength"]' > <i class="fa-solid fa-exclamation mx-2"></i>password is invalid</p>
                                 
                               </div>
                         </div>
