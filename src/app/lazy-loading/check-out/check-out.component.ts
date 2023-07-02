@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { UserService } from 'src/app/services/user.service';
 import Swal from 'sweetalert2';
 declare var paypal: any;
@@ -14,8 +15,10 @@ export class CheckOutComponent implements OnInit {
   mycart: any = localStorage.getItem("myCart");
   totalPrice: number = 0;
   Myarray: any = JSON.parse(this.mycart);
-  constructor(private paymentService: UserService) { }
+  constructor(private title: Title, private paymentService: UserService) { }
+
   ngOnInit() {
+    this.title.setTitle('checkout')
     this.getTotalPrice()
     paypal.Buttons({
       style:
