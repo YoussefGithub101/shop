@@ -52,7 +52,6 @@ test(){
 
    alertFunction(Alert:string) {
     const alert1 = <HTMLInputElement> document.getElementById(Alert);
-    console.log(alert1)
     alert1.className = "show";
     setTimeout(function(){ alert1.className = alert1.className.replace("show",""); }, 1000);
   }

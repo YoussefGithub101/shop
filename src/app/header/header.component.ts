@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
   cartData: any = localStorage.getItem("myCart")
 
   constructor(public _userService: UserService, private activatedRoute: ActivatedRoute, private router: Router, private http: HttpClient, public CartService: CartService) {
-
+    this.name = this._userService.saveUserData()
     this.cartCount = CartService.totalQuantity
     console.log(this.cartCount)
 
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
     this._userService.userData.subscribe(() => {
       if (this._userService.userData.getValue() != null) {
         this.islogin = true;
-        this.name = this._userService.saveUserData()
+     
 
       }
       else {

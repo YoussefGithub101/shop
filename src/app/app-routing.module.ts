@@ -8,6 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AboutComponent } from './about/about.component';
 import { LogoutComponent } from './logout/logout.component';
 import { CheckOutComponent } from './lazy-loading/check-out/check-out.component';
+import { isAuthenticatedGuard } from './Route Guard/is-authenticated.guard';
 
 const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'} ,
@@ -16,7 +17,7 @@ const routes: Routes = [
 
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
-    {path:"checkOut",component:CheckOutComponent},
+    {path:"checkOut",component:CheckOutComponent,canActivate:[isAuthenticatedGuard]},
     {path:'store',loadChildren:()=>import('./lazy-loading/lazy-loading.module').then(m=>m.LazyLoadingModule)},
     {path:'**' , component:PageNotFoundComponent}
 
