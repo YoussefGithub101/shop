@@ -15,6 +15,7 @@ export class CheckOutComponent implements OnInit {
   mycart: any = localStorage.getItem("myCart");
   totalPrice: number = 0;
   Myarray: any = JSON.parse(this.mycart);
+  newArray: any = this.Myarray.map((ele: any) => { return { Quantity: ele.Quantity, ID: ele.id } })
   constructor(private title: Title, private paymentService: UserService) { }
 
   ngOnInit() {
@@ -40,9 +41,8 @@ export class CheckOutComponent implements OnInit {
       },
       onApprove: (data: any, actions: any) => {
         return actions.order.get().then((Daitails: any) => {
-          let result = Object.assign({}, Daitails, { clientData: this.finalInformation.value }, { proudctsDitails: this.Myarray }, { clientId: this.paymentService.userIdData() })
+          let result = Object.assign({}, Daitails, { clientData: this.finalInformation.value }, { proudctsDetails: this.newArray }, { clientId: this.paymentService.userIdData() })
           this.paymentService.payment(result).subscribe()
-          console.log(result)
           Swal.fire(`Payment success! <br> <h2 style='color:green'>${Daitails.purchase_units[0].amount.value}$</h2>`, "Your payment has been processed successfully.", "success");
         })
       }, onError: ((error: any) => {
