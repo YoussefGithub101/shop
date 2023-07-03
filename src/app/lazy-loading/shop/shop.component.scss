@@ -270,11 +270,7 @@ a.cart-btn i {
 .product-section{
   padding-top: 53px;
 }
-/* -----------------------------------------------------------------------------
-
-# 404 Page Styles
-
------------------------------------------------------------------------------ */
+ 
 
 .wrapper {
   display: flex;
@@ -311,12 +307,26 @@ a[data-toggle="collapse"] {
   right: 20px;
   transform: translateY(-50%);
 }
+.btn2{
+  display: none;
+}
 @media (max-width: 768px) {
   #sidebar {
       margin-left: -250px;
+      position: absolute;
+      z-index: 5;
   }
   #sidebar.active {
       margin-left: 0;
+  }
+  .sidebar-header{
+    position: relative;
+  }
+  .btn2{
+    display:block;
+    position: absolute;
+    top:8px;
+    right: 10px
   }
 }
 
@@ -343,11 +353,11 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
-    /* don't forget to add all the previously mentioned styles here too */
+ 
     background: #fff;
     color: black;
     transition: all 0.3s;
-    box-shadow: 0 0 20px #e4e4e4;
+ 
     padding-bottom: 50px;
     border-radius: 5px;
 }
@@ -388,7 +398,7 @@ a, a:hover, a:focus {
   background: #F28123;
 } */
 
- .activeLink  {
+ .activeLink{
   color: #fff;
   background: #F28123;
 }
@@ -438,3 +448,49 @@ width: 100%;
   z-index: -1;
   opacity: 0.8;
 }
+
+
+ 
+
+ 
+svg {
+  display: block;
+  margin: auto;
+  width: 50%;
+  width: 10.25em;
+  transform-origin: center;
+  animation: rotate4 2s linear infinite;
+ }
+ 
+ circle {
+
+  fill: none;
+  stroke: #F28123;
+  stroke-width: 2;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  stroke-linecap: round;
+  animation: dash4 1.5s ease-in-out infinite;
+ }
+ 
+ @keyframes rotate4 {
+  100% {
+   transform: rotate(360deg);
+  }
+ }
+ 
+ @keyframes dash4 {
+  0% {
+   stroke-dasharray: 1, 200;
+   stroke-dashoffset: 0;
+  }
+ 
+  50% {
+   stroke-dasharray: 90, 200;
+   stroke-dashoffset: -35px;
+  }
+ 
+  100% {
+   stroke-dashoffset: -125px;
+  }
+ }

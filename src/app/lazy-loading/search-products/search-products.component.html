@@ -44,11 +44,18 @@
 
 </ng-template>
 <ng-template #noData>
-    <div class="text-center">
-    <h2>
-        No product found for your query.
-    </h2>
-</div>
+    <div class="text-center"  style="margin-top: -90px;">
+   <!--  <h3>No product found for your query.</h3> -->
+    <img src="../assets/img/No product found2.png" width="70%" height="70%">
+        </div>
 </ng-template>
 
 
+<div id="alertAdd"  >
+    <div class="checkicon"> <i class="fas fa-check-square"></i> </div>
+    product added to cart!
+</div>
+<div id="alertNotadded" >
+    <div class="checkicon2" style="color: red;"> <i class="fas fa-times"></i> </div>
+    this product is already added to cart!
+</div>

@@ -1,4 +1,3 @@
-
 <div class="checkout-section mt-150 mb-150">
     <div class="container">
         <div class="row">
@@ -14,7 +13,7 @@
                           </h5>
                         </div>
 
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample" style="">
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                           <div class="card-body">
                             <div class="billing-address-form">
                                 <form [formGroup]="finalInformation" (ngSubmit)="dub(finalInformation)">
@@ -51,7 +50,7 @@
                             </button>
                           </h5>
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample" style="">
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                           <div class="card-body">
                             <div class="shipping-address-form">
                                 <p>{{finalInformation.get("Address")?.value}}</p>
@@ -59,12 +58,11 @@
                           </div>
                         </div>
                       </div>
-                     
                     </div>
-
                 </div>
-            </div>
+                <div class=" p-3" #paymentRef ></div>
 
+            </div>
             <div class="col-lg-4">
                 <div class="order-details-wrap">
                     <table class="order-details">
@@ -100,10 +98,9 @@
                         </tbody>
                     </table>
                     <a  class="boxed-btn">Place Order</a>
-                    <h1></h1>
+                  </div>
                 </div>
-            </div>
         </div>
     </div>
 </div>
-
+<!-- <div id="paypal-button-container"></div> -->

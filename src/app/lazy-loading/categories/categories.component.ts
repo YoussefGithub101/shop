@@ -50,7 +50,7 @@ ngOnInit(): void{
  
 
 goToproductID(id:any){
-  this.router.navigate(["/LazyLoading/Shop",id])
+  this.router.navigate(["/store/Shop",id])
 }
 getproductCate(){
 
@@ -65,21 +65,9 @@ onTableDataChange(event:any){
 }
  
 
-// addToCart(id:any){
-//   const cart = this.product.filter((producta:any) =>producta.id === id);
-//    const x:any = localStorage.getItem("myCart");
-//      const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
-//      if(foundObject){
-//       console.log("this cart is already added")
-//       alert("this cart is already added");
-//      }else{
-//        this.cartData1.push(cart[0])
-//        localStorage.setItem('myCart', JSON.stringify(this.cartData1))
-//        alert("cart added");
-//      }
-//  }
+ 
 addToCart(id:any){
-  this.CartService.addToCart(id,this.product)
+  this.CartService.addToCart(id,this.product,"alertAdd","alertNotadded")
 }
 
 }

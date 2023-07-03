@@ -3,13 +3,20 @@ import { ProductsService } from '../services/products.service';
 import { Ioffers, Iproducts } from '../interfaces/products';
 import { CartService } from 'src/app/services/cart.service';
 import { Router} from '@angular/router';
+import { Router} from '@angular/router';
+import { CartService } from 'src/app/services/cart.service';
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
+
 export class MainComponent {
   constructor(private proudctService:ProductsService ,private router:Router,private CartService:CartService ){}
+
+
+
   sale:number=50;
   priceOffer:number=.3;
   bgImg:string="assets/img/img/8.jpg";
@@ -40,7 +47,11 @@ ngOnInit():void
           this.sectionProudcts=data
           this.sectionProudcts.sort((a:any, b:any) => b.discountPercentage - a.discountPercentage);
           this.sectionProudcts = this.sectionProudcts.slice(0, 3);
+
           console.log(this.sectionProudcts)
+
+
+
         },
 
         error:err=> this.err=err
@@ -48,6 +59,10 @@ ngOnInit():void
     )
     console.log(this.sectionProudcts)
   }
+  goToproductID(id:any){
+    this.router.navigate(["/store/Shop",id])
+  }
+
 
 
   goToproductID(id:any){
@@ -57,5 +72,10 @@ ngOnInit():void
 
   addToCart(id:any){
     this.CartService.addToCart(id, this.sectionProudcts )
+  }
+
+  addToCart(id:any){
+    this.CartService.addToCart(id, this.sectionProudcts ,"alertAdd","alertNotadded")
+
   }
 }

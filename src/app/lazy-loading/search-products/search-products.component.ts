@@ -46,7 +46,7 @@ getproduct(){
 
 
 goToproductID(id:any){
-  this.router.navigate(["/LazyLoading/Shop",id])
+  this.router.navigate(["/store/Shop",id])
 }
 
 
@@ -69,7 +69,7 @@ onTableDataChange(event:any){
 //      }
 //  }
 addToCart(id:any){
-  this.CartService.addToCart(id,this.product)
+  this.CartService.addToCart(id,this.product,"alertAdd","alertNotadded")
 }
 
 }

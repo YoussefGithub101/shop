@@ -66,26 +66,32 @@
               class="fas fa-shopping-cart"></i> Add to Cart</a>
 
         </div>
-      </div>
-    </div>
-
-    <div class="row "> <!-- d-flex align-items-stretch-->
-      <div class="col-lg-4 col-md-6 text-center" *ngFor="let pr of sectionProudcts let i=index">
-        <div class="single-product-item" *ngIf="i<3">
-          <div class="product-image" (click)="goToproductID(pr.id)">
-            <a><img src={{pr.thumbnail}} alt=""></a>
-          </div>
-          <h3>{{pr.title}}</h3>
-          <p class="product-price"><span></span>{{pr.price |currency}}</p>
-          <!-- <a routerLink="/lazy-loading/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a> -->
-          <a href="javascript:void(0)" class="cart-btn" (click)="addToCart(pr.id)"><i class="fas fa-shopping-cart"></i>
-            Add to Cart</a>
-
+        <div class="row ">   <!-- d-flex align-items-stretch-->
+            <div class="col-lg-4 col-md-6 text-center" *ngFor="let pr of sectionProudcts let i=index" >
+                <div class="single-product-item" *ngIf="i<3">
+                    <div class="product-image">
+                        <a routerLink="/single-product"><img [src]="pr.images[0]" [alt]="pr.description" style="height: 250px;"></a>
+                    </div>
+                    <h3>{{pr.title}}</h3>
+                    <p class="product-price"><span></span>{{pr.price |currency}}</p>
+                    <a routerLink="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
+
+
+<div id="alertAdd">
+    <div class="checkicon"> <i class="fas fa-check-square"></i> </div>
+    product added to cart!
+</div>
+<div id="alertNotadded" >
+    <div class="checkicon2" style="color: red;"> <i class="fas fa-times"></i> </div>
+    this product is already added to cart!
+</div>
+
+
 
 <section class="cart-banner pt-100 pb-100">
   <div class="container">

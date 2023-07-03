@@ -1,6 +1,7 @@
-import { Observable, BehaviorSubject } from 'rxjs';
+import { user } from './../interfaces/user';
+import { Observable, BehaviorSubject, first } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpHeaders } from '@angular/common/http';
 import jwtDecode from 'jwt-decode';
 import { Router } from '@angular/router';
 
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class UserService {
 
 
-  userData=new BehaviorSubject(null)
+  userData:any=new BehaviorSubject(null)
 
   constructor(private http:HttpClient , public _Router:Router)
    {
@@ -26,11 +27,12 @@ export class UserService {
        
    }
 
-   saveUserData()
+   saveUserData():any
    {
+      
       let data=JSON.stringify(localStorage.getItem("data"))
-        this.userData.next(jwtDecode(data))  
-         console.log(this.userData)
+      this.userData.next(jwtDecode(data))
+      return this.userData.value.user.firstName
 
    }
 
@@ -50,4 +52,5 @@ export class UserService {
    {
       return this.http.post(`https://store-5hap.onrender.com/login`,formData)
    }
+
 }
