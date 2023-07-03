@@ -19,7 +19,7 @@ export class ShopComponent implements OnInit  {
 
 
   toggle:boolean=false;
-
+  alert1:boolean=false;
 
 
   product:any=[];
@@ -28,6 +28,7 @@ export class ShopComponent implements OnInit  {
   categories:any=[]
 
   cartData1:any=[];
+  isLoaded:boolean=true;
   constructor(private elementRef: ElementRef, private renderer: Renderer2,private ProductsService:ProductsService,private activatedRoute: ActivatedRoute, public  router:Router , private http: HttpClient ,private CartService:CartService){
     this.cartData1= ProductsService.cartData;
 
@@ -50,10 +51,8 @@ export class ShopComponent implements OnInit  {
         this.ProductsService.getAllproducts().subscribe({
           next:(data:any)=>{
             this.product=data
-
-
             this.categories= Array.from(new Set(this.product.map((product: any) => product.category)));
-
+            this.isLoaded=false;
 
           },error:error=>this.errorMessage=error
         })
@@ -61,19 +60,7 @@ export class ShopComponent implements OnInit  {
       }
 
 
-      // addToCart(id:any){
-      //  const cart = this.product.filter((producta:any) =>producta.id === id);
-      //   const x:any = localStorage.getItem("myCart");
-      //     const foundObject=JSON.parse(x)?.find((e:any) => e.id === id)
-      //     if(foundObject){
-      //       console.log("this cart is already added")
-      //       alert("this cart is already added");
-      //     }else{
-      //      this.cartData1.push(cart[0])
-      //       localStorage.setItem('myCart', JSON.stringify(this.cartData1))
-      //       alert("cart added");
-      //     }
-      // }
+
       addToCart(id:any){
         this.CartService.addToCart(id,this.product,"alertAdd","alertNotadded")
       }
@@ -92,7 +79,7 @@ export class ShopComponent implements OnInit  {
         this.router.navigate(["/store/Shop",id])
       }
       getAllCategories(){
-        this.router.navigate(["/LazyLoading/Shop"])
+        this.router.navigate(["/store/Shop"])
 
       }
 

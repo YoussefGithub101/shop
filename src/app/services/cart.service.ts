@@ -6,10 +6,12 @@ import { Injectable } from '@angular/core';
 export class CartService {
   cartData:any= [] ;
   totalQuantity:number;
+  totalPrice:number;
   
   constructor() { 
     this.test();
-   
+    this.getTotalPrice()
+   this. updateTotalQuantity()
   }
   
  
@@ -50,7 +52,6 @@ test(){
 
    alertFunction(Alert:string) {
     const alert1 = <HTMLInputElement> document.getElementById(Alert);
-    console.log(alert1)
     alert1.className = "show";
     setTimeout(function(){ alert1.className = alert1.className.replace("show",""); }, 1000);
   }
@@ -58,30 +59,57 @@ test(){
   //update total price
 
 
-/*   getTotalPrice(totalPrice:number){
-    totalPrice=0
+  getTotalPrice(){
+    this.totalPrice=0
     for (const cartdata of this.cartData) {
-      totalPrice += cartdata.price-(cartdata.price *(cartdata.discountPercentage/100));
+      this.totalPrice += cartdata.price-(cartdata.price *(cartdata.discountPercentage/100));
     }
   }
 
-  incrementQuantity(id:number,totalPrice:number){
+  incrementQuantity(id:number){
+    this.test();
     let Index = this.cartData.findIndex((item:any)=> item.id == id);
-   if(this.cartData[Index].Quantity !==this.cartData[Index].stock){
+    if(this.cartData[Index].Quantity !==this.cartData[Index].stock){
      const price = this.cartData[Index].price 
      this.cartData[Index].Quantity ++;
      const Quantity = this.cartData[Index].Quantity
      this.cartData[Index].price = (price * Quantity)/(Quantity-1)  
      localStorage.setItem('myCart',JSON.stringify(this.cartData))
-     this.getTotalPrice(totalPrice)
+           //update Total price
+           this.getTotalPrice()
+           //update cart count
+          this.updateTotalQuantity()
+           
    }
-  } */
+  }
+  decreaseQuantity(id:number){
+    let Index = this.cartData.findIndex((item:any)=> item.id == id);
+    if(this.cartData[Index].Quantity !==1){
+     const price = this.cartData[Index].price 
+     this.cartData[Index].Quantity --;
+     const Quantity = this.cartData[Index].Quantity
+     this.cartData[Index].price = (price * Quantity)/(Quantity+1)  
+     localStorage.setItem('myCart',JSON.stringify(this.cartData))
+           //update Total price
+           this.getTotalPrice()
+           //update cart count
+          this.updateTotalQuantity()
+   }
+  }
+
+  removeCart(id:any){
+    this.cartData = this.cartData.filter((producta:any) =>producta.id !== id);
+    localStorage.setItem('myCart',JSON.stringify(this.cartData))
+           //update Total price
+           this.getTotalPrice()
+           //update cart count
+          this.updateTotalQuantity()
+  }
+
+
   // Calculate and update the total quantity
    updateTotalQuantity() {
-/*     this.totalQuantity=0
-    for (const cartdata of this.cartData) {
-      this.totalQuantity +=  cartdata.Quantity;
-    } */
+ 
     this.test()
     this.totalQuantity  = this.cartData.reduce((acc:any, item:any) => acc + item.Quantity, 0);
   }
