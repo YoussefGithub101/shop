@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { CartService } from 'src/app/services/cart.service';
 import Swal from 'sweetalert2';
+import { Title } from '@angular/platform-browser';
 
 
 
@@ -17,9 +18,9 @@ export class CartComponent implements OnInit{
   showDiv = true;
   cartData1:any=[]
  
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private ProductsService:ProductsService, private _Router:Router ,public CartService:CartService){
+  constructor(private title: Title,private elementRef: ElementRef, private renderer: Renderer2, private ProductsService:ProductsService, private _Router:Router ,public CartService:CartService){
   this.totalPrice=this.CartService.totalPrice
-  
+  this.CartService.getTotalPrice()
   
   }
   test(){
@@ -29,7 +30,7 @@ export class CartComponent implements OnInit{
   
   
   ngOnInit(): void {
- 
+    this.title.setTitle('Cart')
     this.test()
     
   }
@@ -52,25 +53,27 @@ export class CartComponent implements OnInit{
     this.test()
   }
  
-
-
-
-      isLogIn()
-      {
-        if(localStorage.getItem("data") != null )
-        {
-                 this._Router.navigate(["/checkOut"])
+  isLogIn() {
+    if (localStorage.getItem("data") != null) {
+      this._Router.navigate(["/checkOut"])
+    }
+    else {
+      Swal.fire({
+        title: "login...",
+        icon: "error",
+        customClass: {
+          container: 'my-custom-shape-container'
         }
-        else{
-          Swal.fire({
-            title: "login...",
-            icon: "error",
-            customClass: {
-            container: 'my-custom-shape-container'}
-          });
-          this._Router.navigate(["/login"])
-        }
-      }
-}
+      });
+      this._Router.navigate(["/login"])
+    }
+  }
+
 
  
+  }
+ 
+
+
+
+
