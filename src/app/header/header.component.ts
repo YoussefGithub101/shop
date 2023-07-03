@@ -40,14 +40,12 @@ ngOnInit(): void
      if(this._userService.userData.getValue() != null)
      {
        this.islogin=true;
-       this.name=this._userService.saveUserData()
+      /*  this.name=this._userService.saveUserData() */
        
      }
      else
      {
        this.islogin=false;
-
-      
      }
    })
    

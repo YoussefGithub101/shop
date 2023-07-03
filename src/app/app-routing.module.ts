@@ -13,15 +13,13 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'home'} ,
   {path:'home',component:MainComponent},
   {path:'about',component:AboutComponent},
-  /*   {path:'',component:RegistrationComponent}, */
+
     {path:'login',component:LoginComponent},
     {path:'register',component:RegisterComponent},
     {path:"checkOut",component:CheckOutComponent},
     {path:'store',loadChildren:()=>import('./lazy-loading/lazy-loading.module').then(m=>m.LazyLoadingModule)},
     {path:'**' , component:PageNotFoundComponent}
-/*     {path:'category',component:CategoryComponent},
-    {path:'single-product',component:SingleProductComponent},
-    {path:'**' , component:PageNotFoundComponent} */
+
 
 ];
 

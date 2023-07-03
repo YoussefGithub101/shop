@@ -32,6 +32,7 @@ export class UserService {
       
       let data=JSON.stringify(localStorage.getItem("data"))
       this.userData.next(jwtDecode(data))
+      console.log(this.userData)
       return this.userData.value.user.firstName
 
    }

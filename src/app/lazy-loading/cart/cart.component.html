@@ -74,7 +74,7 @@
                             <tbody>
                                 <tr class="total-data">
                                     <td><strong>Subtotal: </strong></td>
-                                    <td>{{totalPrice| currency}}</td>
+                                    <td>{{this.CartService.totalPrice| currency}}</td>
                                 </tr>
                                 <tr class="total-data">
                                     <td><strong>Shipping: </strong></td>
@@ -82,7 +82,7 @@
                                 </tr>
                                 <tr class="total-data">
                                     <td><strong>Total: </strong></td>
-                                    <td>{{totalPrice + 20| currency}}</td>
+                                    <td>{{this.CartService.totalPrice + 20| currency}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -92,15 +92,7 @@
                         </div>
                     </div>
     
-                    <div class="coupon-section">
-                        <h3>Apply Coupon</h3>
-                        <div class="coupon-form-wrap">
-                            <form action="index.html">
-                                <p><input type="text" placeholder="Coupon"></p>
-                                <p><input type="submit" value="Apply"></p>
-                            </form>
-                        </div>
-                    </div>
+ 
                 </div>
             </div>
         </div>
