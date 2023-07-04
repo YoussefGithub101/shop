@@ -7,7 +7,7 @@
             <p class="subtitle">shopping & Organic</p>
             <h1>The Best Products</h1>
             <div class="hero-btns">
-              <a routerLink="/LazyLoading/Shop" class="boxed-btn">Product Collection</a>
+              <a routerLink="/store/Shop" class="boxed-btn">Product Collection</a>
 
             </div>
           </div>
@@ -48,38 +48,35 @@
         </div>
       </div>
     </div>
-    <div class="row ">
+    <div class="row d-flex align-items-stretch ">
       <div class="col-lg-4 col-md-6 text-center" *ngFor="let prod of sectionProudcts">
-        <div class="single-product-item">
+        <div class="single-product-item h-100">
           <div class="product-image" (click)="goToproductID(prod.id)">
-            <a><img src={{prod.thumbnail}} alt=""></a>
+            <a><img  src={{prod.thumbnail}} alt="Shopping Cart" id="cart-image"></a>
+
           </div>
-          <h3>{{prod.title}}</h3>
-          <span>{{prod.brand}}</span>
-          <div class="d-flex  justify-content-around flex-wrap">
+
+            <h3>{{prod.title}}</h3>
+            <span>{{prod.brand}}</span>
+
+          <div class="d-flex mt-auto justify-content-around flex-wrap">
+
             <p class="product-price" style="color: black;"> {{prod.price-(prod.price *(prod.discountPercentage/100)) |
               currency}} </p>
             <p class="product-price"> <del style="color: #F28123;">${{prod.price}}</del> </p>
           </div>
-
-          <a href="javascript:void(0)" class="cart-btn" (click)="addToCart(prod.id)"><i
+          <div class="mt-auto">
+            <a href="javascript:void(0)" class="cart-btn" (click)="addToCart(prod.id)"><i
               class="fas fa-shopping-cart"></i> Add to Cart</a>
+          </div>
+
 
         </div>
-        <div class="row ">   <!-- d-flex align-items-stretch-->
-            <div class="col-lg-4 col-md-6 text-center" *ngFor="let pr of sectionProudcts let i=index" >
-                <div class="single-product-item" *ngIf="i<3">
-                    <div class="product-image">
-                        <a routerLink="/single-product"><img [src]="pr.images[0]" [alt]="pr.description" style="height: 250px;"></a>
-                    </div>
-                    <h3>{{pr.title}}</h3>
-                    <p class="product-price"><span></span>{{pr.price |currency}}</p>
-                    <a routerLink="/cart" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
+        <div class="row  d-flex align-items-stretch">   <!-- d-flex align-items-stretch-->
+
         </div>
     </div>
-</div>
+</div><br>
 
 
 <div id="alertAdd">
@@ -128,7 +125,7 @@
             </div>
           </div>
         </div>
-        <a href="cart.html" class="cart-btn mt-3"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+        <a href="/store/Shop" class="cart-btn mt-3"> know more</a>
         <!-- <a href="javascript:void(0)" class="cart-btn" (click)="addToCart(pr.id)"><i class="fas fa-shopping-cart"></i> Add to Cart</a> -->
 
       </div>
@@ -167,7 +164,7 @@
   <div class="container">
     <h3>{{titleOfMonthlyOffer}} <br>{{textOfMonthlyOffer}} <span class="orange-text">{{text2OfMonthlyOffer}}</span></h3>
     <div class="sale-percent"><span>Sale! <br> Upto</span>{{textOfMonthlySale |percent}} <span>off</span></div>
-    <a routerLink="./LazyLoading/Shop" class="cart-btn btn-lg">Shop Now</a>
+    <a routerLink="/store/Shop" class="cart-btn btn-lg">Shop Now</a>
   </div>
 </section>
 <div class="latest-news pt-150 pb-150">
@@ -177,17 +174,18 @@
       <div class="col-lg-8 offset-lg-2 text-center">
         <div class="section-title">
           <h3><span class="orange-text">Our</span> News</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.
-          </p>
+          <h3><b><i>                   let see some of our products</i></b>
+          </h3>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-lg-4 col-md-6 position-relative  " *ngFor="let pro of sectionProudcts let i =index">
         <div class="single-latest-news mh-150 h-100 justify-content-between" *ngIf="i<3">
-          <a routerLink="single-product">
-            <div class="latest-news-bg news-bg-1"></div>
-          </a>
+          <div class="product-image" (click)="goToproductID(pro.id)">
+            <a><img  src={{pro.thumbnail}} alt="" class=""></a>
+
+          </div>
           <div class="news-text-box h-70 d-flex flex-column justify-content-between ">
             <h3 style="overflow: hidden;"><a routerLink="/single-product">{{pro.title}}</a></h3>
             <p class="blog-meta">
@@ -195,7 +193,7 @@
               <span class="date"><i class="fas fa-calendar"></i> 27 December, 2019</span>
             </p>
             <p class="excerpt">{{pro.description}}</p>
-            <a routerLink="./LazyLoading/Shop/singleproduct" class="read-more-btn  ">read more <i
+            <a routerLink="/store/Shop/{{pro.id}}" class="read-more-btn  ">read more <i
                 class="fas fa-angle-right"></i></a>
           </div>
         </div>
@@ -203,7 +201,7 @@
     </div>
     <div class="row">
       <div class="col-lg-12 text-center">
-        <a routerLink="./LazyLoading/Shop" class="boxed-btn">More News</a>
+        <a routerLink="/store/Shop" class="boxed-btn">More News</a>
       </div>
     </div>
   </div>

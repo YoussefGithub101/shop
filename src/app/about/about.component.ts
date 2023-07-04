@@ -14,7 +14,7 @@ export class AboutComponent {
   ngOnInit() {
     this.title.setTitle('About')
   }
-  textAbout: string = "We sale fresh fruits";
+  textAbout: string = "We sale The Best Original Products";
   aboutUs: string = "About Us";
   monthlyOffer: string = "December sale is on! ";
   saleMonthly: number = .5;
