@@ -31,7 +31,6 @@ export class SingleProductComponent implements OnInit {
     this.SingleProductID = this.activated.snapshot.paramMap.get('id')
     this.getproductSID()
     this.getUser()
-
   }
   getUser() {
     this.user = this.userService.username
@@ -41,7 +40,7 @@ export class SingleProductComponent implements OnInit {
     this.ProductsService.getproductID(this.SingleProductID).subscribe({
       next: (data: any) => {
         this.SingleProductdata = data
-        console.log(this.SingleProductdata)
+
         this.product.push(data)
       }, error: error => this.errorMessage = error
     })
