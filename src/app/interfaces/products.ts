@@ -10,23 +10,22 @@ export interface Iproducts {
     category: string;
     thumbnail: string;
     images: string[];
+    comments: []
 }
 
-export interface Ioffers
-{
-    offers:[
-        {offer:string,textOffer:string},
-        {offer:string,textOffer:string},
-        {offer:string,textOffer:string},
-       
-      ]
+export interface Ioffers {
+    offers: [
+        { offer: string, textOffer: string },
+        { offer: string, textOffer: string },
+        { offer: string, textOffer: string },
+
+    ]
 }
-export interface IsectionAbout
-{
-    about:[
-        {advantg:string,text:string,fav:string},
-        {advantg:string,text:string,fav:string},
-        {advantg:string,text:string,fav:string},
-        {advantg:string,text:string,fav:string},
-      ]
+export interface IsectionAbout {
+    about: [
+        { advantg: string, text: string, fav: string },
+        { advantg: string, text: string, fav: string },
+        { advantg: string, text: string, fav: string },
+        { advantg: string, text: string, fav: string },
+    ]
 }

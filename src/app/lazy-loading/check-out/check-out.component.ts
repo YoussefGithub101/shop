@@ -34,7 +34,7 @@ export class CheckOutComponent implements OnInit {
         return actions.order.create({
           purchase_units: [
             {
-              amount: { value: this.totalPrice.toFixed(2), currency_code: 'USD' },
+              amount: { value: (this.totalPrice + 20).toFixed(2), currency_code: 'USD' },
             },
           ]
         })
