@@ -109,8 +109,6 @@ test(){
 
   // Calculate and update the total quantity
    updateTotalQuantity() {
- 
-    this.test()
     this.totalQuantity  = this.cartData.reduce((acc:any, item:any) => acc + item.Quantity, 0);
   }
 }

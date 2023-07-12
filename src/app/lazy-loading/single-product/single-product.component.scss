@@ -1,4 +1,5 @@
 .single-product-img img {
+<<<<<<< HEAD
   height: 500px;
   border-radius: 5px;
 
@@ -31,4 +32,34 @@ p.single-product-pricing span {
   color: white;
   font-size: bold;
 
+=======
+    height: 500px;
+    border-radius: 5px;
+    
+    box-shadow: 0 0 20px #ddd;
+  }
+  
+  .single-product-content h3 {
+    font-size: 22px;
+    font-weight: 600;
+  }
+  
+  p.single-product-pricing span {
+    font-size: 18px;
+    display: block;
+    opacity: 0.8;
+    margin-bottom: 10px;
+    font-weight: 400;
+  }
+  .rating {
+    font-size: 1.9rem;
+    color: #ffc107;
+  }
+
+  .next {
+     filter: invert(1);
+}
+.prev {
+    filter: invert(1);
+>>>>>>> c4f9c78435c67bb10a76ed54bb64289342e414a8
 }

@@ -52,7 +52,7 @@ export class LoginComponent {
                                           Swal.showLoading()
                                           const b: any = Swal.getHtmlContainer()?.querySelector('b')
                                           timerInterval = setInterval(() => {
-                                                b.textContent = Swal.getTimerLeft()
+                                               /*  b.textContent = Swal.getTimerLeft() */
                                           }, 100)
                                     },
                                     willClose: () => {

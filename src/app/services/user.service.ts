@@ -14,7 +14,7 @@ export class UserService {
 
 
    userData: any = new BehaviorSubject(null)
-
+   username:string;
    constructor(private http: HttpClient, public _Router: Router) {
 
 
@@ -26,15 +26,13 @@ export class UserService {
    }
 
    saveUserData(): any {
-
       let data = JSON.stringify(localStorage.getItem("data"))
       this.userData.next(jwtDecode(data))
-      console.log(this.userData)
-      return this.userData.value.user.firstName
-
+      this.username = this.userData.value.user.firstName
    }
-   userIdData(): any {
 
+
+   userIdData(): any {
       let data = JSON.stringify(localStorage.getItem("data"))
       this.userData.next(jwtDecode(data))
       return this.userData.value.user._id
@@ -43,6 +41,8 @@ export class UserService {
 
    logOut() {
       localStorage.removeItem("data")
+      localStorage.removeItem("myCart")
+      localStorage.removeItem("__paypal_storage__")
       this.userData.next(null)
       this._Router.navigate(["login"])
    }
