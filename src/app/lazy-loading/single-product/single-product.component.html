@@ -87,7 +87,7 @@
               <hr>
               <h4 class="card-subtitle mb-2 text-muted">Comments :</h4>
               <div class="comment-list">
-                <div class="card text-left mb-3" *ngFor="let comment of SingleProductdata.comments ; let i=index ,trackBy: trackByMethod">
+                <div class="card text-left mb-3" *ngFor="let comment of commentsOfProudct ; let i=index ,trackBy: trackByMethod">
                   <div class="card-body">
                     <p class="card-text">
                       <span style="color: #F28123; font-weight: 900;">{{comment.split(' ')[0]}}</span>

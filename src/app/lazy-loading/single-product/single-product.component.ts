@@ -16,7 +16,7 @@ export class SingleProductComponent implements OnInit {
 
   SingleProductdata: any = [];
 
-
+  commentsOfProudct: any = []
   SingleProductID: any;
   errorMessage: any;
   cartData1: any = [];
@@ -32,6 +32,7 @@ export class SingleProductComponent implements OnInit {
     this.getproductSID()
     this.getUser()
   }
+
   getUser() {
     this.user = this.userService.username
   }
@@ -40,7 +41,7 @@ export class SingleProductComponent implements OnInit {
     this.ProductsService.getproductID(this.SingleProductID).subscribe({
       next: (data: any) => {
         this.SingleProductdata = data
-
+        this.commentsOfProudct = data.comments
         this.product.push(data)
       }, error: error => this.errorMessage = error
     })
@@ -56,8 +57,8 @@ export class SingleProductComponent implements OnInit {
     if (localStorage.getItem('data') != null) {
       if (this.formComment.valid) {
         let comment = { comment: this.user + " : " + this.formComment.value }
-        this.ProductsService.addComment(this.SingleProductID, comment).subscribe((res: any) => console.log(res))
-
+        this.ProductsService.addComment(this.SingleProductID, comment).subscribe()
+        this.commentsOfProudct.push(this.user + " : " + this.formComment.value)
         Swal.fire("comment success!", "You added new comment", "success");
       }
       else {
