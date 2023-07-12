@@ -3,26 +3,27 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { HttpClient } from '@angular/common/http';
 import { CartService } from 'src/app/services/cart.service';
-import { FormArray, FormBuilder, FormControl } from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { Title } from '@angular/platform-browser';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-single-product',
   templateUrl: './single-product.component.html',
   styleUrls: ['./single-product.component.scss']
 })
 export class SingleProductComponent implements OnInit {
-  rating: number;
 
   SingleProductdata: any = [];
+  rating: number;
 
   SingleProductID: any;
   errorMessage: any;
   cartData1: any = [];
   product: any = []
-  comments: any = []
-  comment: any = ''
-  constructor(private title: Title, private activated: ActivatedRoute, private http: HttpClient, private ProductsService: ProductsService, private CartService: CartService, private fb: FormBuilder, private _Router: Router) {
+  user: any
+
+  constructor(private title: Title, private activated: ActivatedRoute, private http: HttpClient, private ProductsService: ProductsService, private CartService: CartService, private fb: FormBuilder, private _Router: Router, private userService: UserService) {
     this.cartData1 = ProductsService.cartData
   }
 
@@ -31,6 +32,16 @@ export class SingleProductComponent implements OnInit {
     this.SingleProductID = this.activated.snapshot.paramMap.get('id')
     console.log(this.SingleProductID)
     this.getproductSID()
+    this.getUser()
+    this.rating = Math.floor(this.SingleProductdata.rating) - 1
+  }
+  getUser() {
+    if (localStorage.getItem('data') != null) {
+      this.user = this.userService.saveUserData()
+    } else {
+      this.user = 'Others Users'
+
+    }
   }
 
   getproductSID(): void {
@@ -38,8 +49,6 @@ export class SingleProductComponent implements OnInit {
       next: (data: any) => {
         this.SingleProductdata = data
         this.product.push(data)
-
-
       }, error: error => this.errorMessage = error
     })
 
@@ -50,21 +59,30 @@ export class SingleProductComponent implements OnInit {
   }
 
   formComment = new FormControl('')
-
   pushComment() {
-    if (localStorage.getItem("data") != null) {
+    if (localStorage.getItem('data') != null) {
       if (this.formComment.valid) {
-        this.comments.push(this.formComment.value)
-        this.formComment.reset()
+        let i: any = ''
+        let comment = { comment: this.formComment.value }
+        this.ProductsService.addComment(this.SingleProductID, comment).subscribe({
+          next: data => i = data,
+          error: err => Swal.fire({
+            icon: "error",
+            title: err,
+          })
+        })
+        this.getproductSID()
         Swal.fire("comment success!", "You added new comment", "success");
-      } else {
+      }
+      else {
         Swal.fire({
           icon: "error",
           title: 'must be between 5-50 letters',
         });
       }
-    }
-    else {
+
+      this.formComment.reset()
+    } else {
       Swal.fire({
         title: "login...",
         icon: "error",
@@ -75,12 +93,35 @@ export class SingleProductComponent implements OnInit {
       this._Router.navigate(["/login"])
     }
   }
+  // pushComment() {
+  //   if (localStorage.getItem("data") != null) {
+  //     if (this.formComment.valid) {
+  //       this.comments.push(this.formComment.value)
+  //       this.formComment.reset()
+  //       Swal.fire("comment success!", "You added new comment", "success");
+  //     } else {
+  //       Swal.fire({
+  //         icon: "error",
+  //         title: 'must be between 5-50 letters',
+  //       });
+  //     }
+  //   }
+  //   else {
+  //     Swal.fire({
+  //       title: "login...",
+  //       icon: "error",
+  //       customClass: {
+  //         container: 'my-custom-shape-container'
+  //       }
+  //     });
+  //     this._Router.navigate(["/login"])
+  //   }
+  // }
   setRating(value: number) {
     if (localStorage.getItem("data") != null) {
       this.rating = value;
       Swal.fire("Rating success!", "You added new Rate", "success");
     }
-
     else {
       Swal.fire({
         title: "login Please...",
