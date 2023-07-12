@@ -15,14 +15,13 @@ import { UserService } from 'src/app/services/user.service';
 export class SingleProductComponent implements OnInit {
 
   SingleProductdata: any = [];
-  
+
 
   SingleProductID: any;
   errorMessage: any;
   cartData1: any = [];
   product: any = []
   user: any
-
   constructor(private title: Title, private activated: ActivatedRoute, private http: HttpClient, private ProductsService: ProductsService, private CartService: CartService, private fb: FormBuilder, private _Router: Router, private userService: UserService) {
     this.cartData1 = ProductsService.cartData
   }
@@ -30,10 +29,9 @@ export class SingleProductComponent implements OnInit {
   ngOnInit(): void {
     this.title.setTitle('Proudct Ditails')
     this.SingleProductID = this.activated.snapshot.paramMap.get('id')
-    console.log(this.SingleProductID)
     this.getproductSID()
     this.getUser()
-   
+
   }
   getUser() {
     this.user = this.userService.username
@@ -85,31 +83,6 @@ export class SingleProductComponent implements OnInit {
   trackByMethod(index: number, el: any): number {
     return el.id;
   }
-  // pushComment() {
-  //   if (localStorage.getItem("data") != null) {
-  //     if (this.formComment.valid) {
-  //       this.comments.push(this.formComment.value)
-  //       this.formComment.reset()
-  //       Swal.fire("comment success!", "You added new comment", "success");
-  //     } else {
-  //       Swal.fire({
-  //         icon: "error",
-  //         title: 'must be between 5-50 letters',
-  //       });
-  //     }
-  //   }
-  //   else {
-  //     Swal.fire({
-  //       title: "login...",
-  //       icon: "error",
-  //       customClass: {
-  //         container: 'my-custom-shape-container'
-  //       }
-  //     });
-  //     this._Router.navigate(["/login"])
-  //   }
-  // }
-   
 
 
 }
