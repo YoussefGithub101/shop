@@ -9,13 +9,13 @@ export class CartService {
   totalPrice:number;
   
   constructor() { 
-    this.test();
+    this.check();
     this.getTotalPrice()
    this. updateTotalQuantity()
   }
   
- 
-test(){
+ //check if there is a cart or not , if not cart is an empty array
+ check(){
   if(localStorage.getItem("myCart")===null){
     this.cartData=[];
   } else{
@@ -24,10 +24,10 @@ test(){
   }
 }
 
-
+    //addToCart
   addToCart(id:any , data:any ,AlertAdd:string ,notAdded:string){
 
-    this.test();
+    this.check();
     const cart = data.filter((producta:any) =>producta.id === id);
     cart[0].Quantity =1
      const x:any = localStorage.getItem("myCart");
@@ -44,21 +44,19 @@ test(){
 
 
 
-
+    //getCart
    getCart(){
     return this.cartData
    }
 
-
+   //alertFunction pop up function 
    alertFunction(Alert:string) {
     const alert1 = <HTMLInputElement> document.getElementById(Alert);
     alert1.className = "show";
     setTimeout(function(){ alert1.className = alert1.className.replace("show",""); }, 1000);
   }
 
-  //update total price
-
-
+  //update & get the total price
   getTotalPrice(){
     this.totalPrice=0
     for (const cartdata of this.cartData) {
@@ -67,7 +65,6 @@ test(){
   }
 
   incrementQuantity(id:number){
-    this.test();
     let Index = this.cartData.findIndex((item:any)=> item.id == id);
     if(this.cartData[Index].Quantity !==this.cartData[Index].stock){
      const price = this.cartData[Index].price 
