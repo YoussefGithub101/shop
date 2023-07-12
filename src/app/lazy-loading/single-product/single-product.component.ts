@@ -56,7 +56,7 @@ export class SingleProductComponent implements OnInit {
   pushComment() {
     if (localStorage.getItem('data') != null) {
       if (this.formComment.valid) {
-        let comment = { comment: "UserName " + this.user + " : " + this.formComment.value }
+        let comment = { comment: this.user + " : " + this.formComment.value }
         this.ProductsService.addComment(this.SingleProductID, comment).subscribe((res: any) => console.log(res))
 
         Swal.fire("comment success!", "You added new comment", "success");
