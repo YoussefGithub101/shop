@@ -42,12 +42,12 @@
             </div>
             <div class="col-md-7">
                 <div class="single-product-content">
-                    <span class="rating">
+<!--                     <span class="rating">
                         <ng-container *ngFor="let i of [1, 2, 3, 4, 5] ">
                           <span [class]="i <= rating ? 'fa fa-star' : 'far fa-star'"
                                 (click)="setRating(i)"></span>
                         </ng-container>
-                      </span>
+                      </span> -->
                     <h3>{{SingleProductdata.title}}</h3>
                     <p class="single-product-pricing"><span>{{SingleProductdata.brand}}</span>{{SingleProductdata.price-(SingleProductdata.price *(SingleProductdata.discountPercentage/100)) | currency}}</p>
                     <p>{{SingleProductdata.description}}.</p>

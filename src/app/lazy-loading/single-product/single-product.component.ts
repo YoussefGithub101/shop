@@ -15,7 +15,7 @@ import { UserService } from 'src/app/services/user.service';
 export class SingleProductComponent implements OnInit {
 
   SingleProductdata: any = [];
-  rating: number;
+  
 
   SingleProductID: any;
   errorMessage: any;
@@ -33,7 +33,7 @@ export class SingleProductComponent implements OnInit {
     console.log(this.SingleProductID)
     this.getproductSID()
     this.getUser()
-    this.rating = Math.floor(this.SingleProductdata.rating) - 1
+   
   }
   getUser() {
     this.user = this.userService.username
@@ -109,19 +109,7 @@ export class SingleProductComponent implements OnInit {
   //     this._Router.navigate(["/login"])
   //   }
   // }
-  setRating(value: number) {
-    if (localStorage.getItem("data") != null) {
-      this.rating = value;
-      Swal.fire("Rating success!", "You added new Rate", "success");
-    }
-    else {
-      Swal.fire({
-        title: "login Please...",
-        icon: "error",
-        customClass: { container: 'my-custom-shape-container' }
-      });
-    }
-  }
+   
 
 
 }
