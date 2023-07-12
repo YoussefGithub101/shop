@@ -37,6 +37,7 @@ export class SingleProductComponent implements OnInit {
     this.ProductsService.getproductID(this.SingleProductID).subscribe({
       next: (data: any) => {
         this.SingleProductdata = data
+        console.log(this.SingleProductdata)
         this.product.push(data)
 
 
