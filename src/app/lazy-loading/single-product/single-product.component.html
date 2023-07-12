@@ -77,7 +77,7 @@
     this product is already added to cart!
 </div>
 <!-- end single product -->
-<div class="container text-center my-3" *ngIf="SingleProductdata.comments.length > 0">
+<div class="container text-center my-3" *ngIf="SingleProductdata.comments?.length > 0">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
@@ -87,10 +87,9 @@
               <hr>
               <h4 class="card-subtitle mb-2 text-muted">Comments :</h4>
               <div class="comment-list">
-                <div class="card text-left mb-3" *ngFor="let comment of SingleProductdata.comments ; let i=index">
+                <div class="card text-left mb-3" *ngFor="let comment of SingleProductdata.comments ; let i=index ,trackBy: trackByMethod">
                   <div class="card-body">
-                    <p class="card-text"><span class="name">{{user}}</span> : {{comment}}</p>
-                    
+                    <p class="card-text"> {{comment}}</p>                    
                   </div>
                 </div>
               </div>

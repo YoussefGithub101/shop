@@ -36,12 +36,7 @@ export class SingleProductComponent implements OnInit {
     this.rating = Math.floor(this.SingleProductdata.rating) - 1
   }
   getUser() {
-    if (localStorage.getItem('data') != null) {
-      this.user = this.userService.saveUserData()
-    } else {
-      this.user = 'Others Users'
-
-    }
+    this.user = this.userService.username
   }
 
   getproductSID(): void {
@@ -62,16 +57,9 @@ export class SingleProductComponent implements OnInit {
   pushComment() {
     if (localStorage.getItem('data') != null) {
       if (this.formComment.valid) {
-        let i: any = ''
-        let comment = { comment: this.formComment.value }
-        this.ProductsService.addComment(this.SingleProductID, comment).subscribe({
-          next: data => i = data,
-          error: err => Swal.fire({
-            icon: "error",
-            title: err,
-          })
-        })
-        this.getproductSID()
+        let comment = { comment: "UserName " + this.user + " : " + this.formComment.value }
+        this.ProductsService.addComment(this.SingleProductID, comment).subscribe((res: any) => console.log(res))
+
         Swal.fire("comment success!", "You added new comment", "success");
       }
       else {
@@ -92,6 +80,9 @@ export class SingleProductComponent implements OnInit {
       });
       this._Router.navigate(["/login"])
     }
+  }
+  trackByMethod(index: number, el: any): number {
+    return el.id;
   }
   // pushComment() {
   //   if (localStorage.getItem("data") != null) {
