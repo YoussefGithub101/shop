@@ -8,10 +8,10 @@ import { Iproducts } from "../interfaces/products"
 export class ProductsService {
   cartData: Iproducts[] = [];
   product = [];
-  _url = 'https://store-5hap.onrender.com/product';
+  _url = 'https://store-backend-4mmk.onrender.com/product';
 
   make(token: any): Observable<any> {
-    const url = `https://store-5hap.onrender.com/create-payment-intent`
+    const url = `https://store-backend-4mmk.onrender.com/create-payment-intent`
     return this.http.post(url, { token })
 
   }
@@ -24,26 +24,20 @@ export class ProductsService {
       return throwError(() => err.message || "Server error")
     }));
   }
-  // addComment(comment: {}): Observable<Iproducts[]> {
-
-  //   return this.http.post<Iproducts[]>(this._url, comment).pipe(catchError((err) => {
-  //     return throwError(() => err.message || "Server error")
-  //   }));
-  // }
-
+ 
 
 
 
 
   getproductID(SingleProductID: number): Observable<Iproducts[]> {
 
-    return this.http.get<Iproducts[]>(`https://store-5hap.onrender.com/product/${SingleProductID}`).pipe(catchError((err) => {
+    return this.http.get<Iproducts[]>(`https://store-backend-4mmk.onrender.com/product/${SingleProductID}`).pipe(catchError((err) => {
       return throwError(() => err.message || "Server error")
     }));
   }
   addComment(SingleProductID: number, comment: any): Observable<Iproducts[]> {
 
-    return this.http.post<Iproducts[]>(`https://store-5hap.onrender.com/product/${SingleProductID}`, comment).pipe(catchError((err) => {
+    return this.http.post<Iproducts[]>(`https://store-backend-4mmk.onrender.com/${SingleProductID}`, comment).pipe(catchError((err) => {
       return throwError(() => err.message || "Server error")
     }));
   }
@@ -53,7 +47,7 @@ export class ProductsService {
 
   getproductSearch(SearchID: string): Observable<Iproducts[]> {
 
-    return this.http.get<Iproducts[]>(`https://store-5hap.onrender.com/search?q=${SearchID}`).pipe(catchError((err) => {
+    return this.http.get<Iproducts[]>(`https://store-backend-4mmk.onrender.com/search?q=${SearchID}`).pipe(catchError((err) => {
       return throwError(() => err.message || "Server error")
     }));
   }

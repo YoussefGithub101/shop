@@ -51,6 +51,7 @@ export class ShopComponent implements OnInit  {
         this.ProductsService.getAllproducts().subscribe({
           next:(data:any)=>{
             this.product=data
+            console.log(this.product)
             this.categories= Array.from(new Set(this.product.map((product: any) => product.category)));
             this.isLoaded=false;
 
