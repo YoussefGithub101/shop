@@ -48,13 +48,13 @@ export class UserService {
    }
 
    register(formData: object): Observable<any> {
-      return this.http.post(`https://store-backend-4mmk.onrender.com/signup`, formData)
+      return this.http.post(`https://shop-admin-panel-1.onrender.com/signup`, formData)
    }
    loginn(formData: object): Observable<any> {
-      return this.http.post(`https://store-backend-4mmk.onrender.com/login`, formData)
+      return this.http.post(`https://shop-admin-panel-1.onrender.com/login`, formData)
    }
    payment(formData: object): Observable<any> {
-      return this.http.post(`https://store-backend-4mmk.onrender.com/order`, formData)
+      return this.http.post(`https://shop-admin-panel-1.onrender.com/order`, formData)
    }
 
 }

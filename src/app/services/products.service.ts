@@ -8,10 +8,10 @@ import { Iproducts } from "../interfaces/products"
 export class ProductsService {
   cartData: Iproducts[] = [];
   product = [];
-  _url = 'https://store-backend-4mmk.onrender.com/product';
+  _url = 'https://shop-admin-panel-1.onrender.com/product';
 
   make(token: any): Observable<any> {
-    const url = `https://store-backend-4mmk.onrender.com/create-payment-intent`
+    const url = `https://shop-admin-panel-1.onrender.com/create-payment-intent`
     return this.http.post(url, { token })
 
   }
@@ -31,13 +31,13 @@ export class ProductsService {
 
   getproductID(SingleProductID: number): Observable<Iproducts[]> {
 
-    return this.http.get<Iproducts[]>(`https://store-backend-4mmk.onrender.com/product/${SingleProductID}`).pipe(catchError((err) => {
+    return this.http.get<Iproducts[]>(`https://shop-admin-panel-1.onrender.com/product/${SingleProductID}`).pipe(catchError((err) => {
       return throwError(() => err.message || "Server error")
     }));
   }
   addComment(SingleProductID: number, comment: any): Observable<Iproducts[]> {
 
-    return this.http.post<Iproducts[]>(`https://store-backend-4mmk.onrender.com/${SingleProductID}`, comment).pipe(catchError((err) => {
+    return this.http.post<Iproducts[]>(`https://shop-admin-panel-1.onrender.com/${SingleProductID}`, comment).pipe(catchError((err) => {
       return throwError(() => err.message || "Server error")
     }));
   }
@@ -47,7 +47,7 @@ export class ProductsService {
 
   getproductSearch(SearchID: string): Observable<Iproducts[]> {
 
-    return this.http.get<Iproducts[]>(`https://store-backend-4mmk.onrender.com/search?q=${SearchID}`).pipe(catchError((err) => {
+    return this.http.get<Iproducts[]>(`https://shop-admin-panel-1.onrender.com/search?q=${SearchID}`).pipe(catchError((err) => {
       return throwError(() => err.message || "Server error")
     }));
   }
